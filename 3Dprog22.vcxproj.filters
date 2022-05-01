@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;moc;h;def;odl;idl;res;</Extensions>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;moc;h;def;odl;idl;res;</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Distribution Files">
+      <UniqueIdentifier>{B83CAF91-C7BF-462F-B76C-EA11631F866C}</UniqueIdentifier>
+      <Extensions>*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Distribution Files">
+      <UniqueIdentifier>{B83CAF91-C7BF-462F-B76C-EA11631F866C}</UniqueIdentifier>
+      <Extensions>*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Mesh\Static\BezierCurve.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\BoundingBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeGraveYard\VisualObject\Cube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\DebugTriangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\Static\Door.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\Static\Graph.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\Static\Heightmap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\Static\House.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\Static\IdentityCube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Levels\InsideHouse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Levels\Level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Mat4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeGraveYard\Model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\ObjLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeGraveYard\Object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Levels\Oblig3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\OctTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Levels\Outside.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\Pawn\Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeGraveYard\VisualObject\TriangelSurface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\Static\Trophy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vec3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vertex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeGraveYard\VisualObject\VisualObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeGraveYard\VisualObject\XYZ.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\logger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\mainwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\renderwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core\soundmanager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio\soundsource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stb_image\stb_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\vector3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio\wavfilereader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\Collision.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\Static\DebugShapes.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\Static\SkyBox.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\Pawn\Pawn.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\Shadows.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Levels\HeightmapLevel.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\Billboard\BillBoard.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Mesh\Static\BezierCurve.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\BoundingBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeGraveYard\VisualObject\Cube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\DebugTriangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\Static\Door.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\Static\Graph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\Static\Heightmap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\Static\House.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\Static\IdentityCube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Levels\InsideHouse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Levels\Level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Mat4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeGraveYard\Model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\ObjLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeGraveYard\Object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Levels\Oblig3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\OctTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Levels\Outside.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\Pawn\Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeGraveYard\VisualObject\TriangelSurface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\Static\Trophy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vec3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vertex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeGraveYard\VisualObject\VisualObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeGraveYard\VisualObject\XYZ.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <QtMoc Include="Core\mainwindow.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Core\renderwindow.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <ClInclude Include="Core\shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\soundmanager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio\soundsource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image\stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\vector3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio\wavfilereader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Collision.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\Static\DebugShapes.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\Static\SkyBox.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\Pawn\Pawn.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Shadows.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Levels\HeightmapLevel.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\Billboard\BillBoard.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="debug\moc_predefs.h.cbt">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="release\moc_predefs.h.cbt">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="Core\mainwindow.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include=".qmake.stash">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include=".txt">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="3Dprog22.pro.user">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="3Dprog22.pro~RF2e165828.TMP">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="3Dprog22.sln">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="3Dprog22.vcxproj">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="3Dprog22.vcxproj.filters">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="3Dprog22.vcxproj.user">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Textures\Drue.png">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="OpenAL32.dll">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="README.md">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Textures\Rect.png">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Shaders\TextureShader.frag">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="TextureShader.frag">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Shaders\TextureShader.vert">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="TextureShader.vert">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="TriangleSurface.txt">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Textures\UvCheckers.jpg">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Shaders\WireFrame.frag">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Shaders\WireFrame.vert">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Textures\WoodCabinDif.jpg">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Textures\awesomeface.png">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Textures\bird.png">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Textures\cherry.jpg">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Textures\cherry.png">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Shaders\color.frag">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Shaders\color.vert">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Textures\container.jpg">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Textures\dirt.jpg">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Textures\grape.jpg">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="graph.txt">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Textures\grass.jpg">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Textures\ground.jpg">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="interpolfunc.txt">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Textures\kirby.jpg">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Shaders\light.frag">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Shaders\light.vert">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Shaders\plainshader.frag">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="plainshader.frag">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Shaders\plainshader.vert">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="plainshader.vert">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="quadtraticfunc.txt">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Textures\skin.jpg">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Textures\spike.jpg">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Textures\square.png">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Textures\star.jpg">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Textures\tree.jpg">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Textures\white.jpg">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Textures\wood.jpg">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="Shaders\Skybox.vert" />
+    <None Include="Shaders\Skybox.frag" />
+    <None Include="Shaders\Shadow.vert" />
+    <None Include="Shaders\Shadow.frag" />
+    <None Include="Shaders\Shadow.geom" />
+    <None Include="Shaders\lightshadow.frag" />
+    <None Include="Shaders\lightshadow.vert" />
+    <None Include="Shaders\Billboard.frag" />
+    <None Include="Shaders\Billboard.vert" />
+  </ItemGroup>
+</Project>

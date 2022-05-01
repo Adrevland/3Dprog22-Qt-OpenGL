@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{40180A0E-024A-3266-8F5F-37F7A7EF8AFF}</ProjectGuid>
+    <RootNamespace>3D-programmering</RootNamespace>
+    <Keyword>QtVS_v304</Keyword>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.19041.0</WindowsTargetPlatformMinVersion>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' or !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <PlatformToolset>v143</PlatformToolset>
+    <OutputDirectory>release\</OutputDirectory>
+    <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+    <CharacterSet>NotSet</CharacterSet>
+    <ConfigurationType>Application</ConfigurationType>
+    <IntermediateDirectory>release\</IntermediateDirectory>
+    <PrimaryOutput>3D-programmering</PrimaryOutput>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <PlatformToolset>v142</PlatformToolset>
+    <OutputDirectory>debug\</OutputDirectory>
+    <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+    <CharacterSet>NotSet</CharacterSet>
+    <ConfigurationType>Application</ConfigurationType>
+    <IntermediateDirectory>debug\</IntermediateDirectory>
+    <PrimaryOutput>3D-programmering</PrimaryOutput>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>debug\</OutDir>
+    <IntDir>debug\</IntDir>
+    <TargetName>3D-programmering</TargetName>
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>release\</OutDir>
+    <IntDir>release\</IntDir>
+    <TargetName>3D-programmering</TargetName>
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <QtInstall>6.2.2_msvc2019_64</QtInstall>
+    <QtModules>core;opengl;gui;widgets</QtModules>
+  </PropertyGroup>
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <QtInstall>6.2.2_msvc2019_64</QtInstall>
+    <QtModules>core;opengl;gui;widgets</QtModules>
+  </PropertyGroup>
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
+    <Import Project="$(QtMsBuild)\qt.props" />
+  </ImportGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;./openal/include/AL;assimp;release;/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr -utf-8 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
+      <AssemblerListingLocation>release\</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <DisableSpecificWarnings>4577;4467;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <ObjectFileName>release\</ObjectFileName>
+      <Optimization>MaxSpeed</Optimization>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_NO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <ProgramDataBaseFileName>
+      </ProgramDataBaseFileName>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <WarningLevel>Level3</WarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>.\openal\libs\OpenAL32.lib;.\DLL_Libs\assimp-vc143-mt.lib;$(QTDIR)\lib\Qt6Widgets.lib;$(QTDIR)\lib\Qt6OpenGL.lib;$(QTDIR)\lib\Qt6Gui.lib;$(QTDIR)\lib\Qt6Core.lib;$(QTDIR)\lib\Qt6EntryPoint.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreImportLibrary>true</IgnoreImportLibrary>
+      <LinkIncremental>false</LinkIncremental>
+      <OptimizeReferences>true</OptimizeReferences>
+      <OutputFile>$(OutDir)\3D-programmering.exe</OutputFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <SubSystem>Windows</SubSystem>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Link>
+    <Midl>
+      <DefaultCharType>Unsigned</DefaultCharType>
+      <EnableErrorChecks>None</EnableErrorChecks>
+      <WarningLevel>0</WarningLevel>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_OPENGL_LIB;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <QtMoc>
+      <CompilerFlavor>msvc</CompilerFlavor>
+      <Include>./$(Configuration)/moc_predefs.h</Include>
+      <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
+      <DynamicSource>output</DynamicSource>
+      <QtMocDir>$(Configuration)</QtMocDir>
+      <QtMocFileName>moc_%(Filename).cpp</QtMocFileName>
+    </QtMoc>
+    <QtUic>
+      <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
+      <QtUicDir>$(ProjectDir)</QtUicDir>
+      <QtUicFileName>ui_%(Filename).h</QtUicFileName>
+    </QtUic>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;./openal/include/AL;assimp;debug;/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr -utf-8 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
+      <AssemblerListingLocation>debug\</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4577;4467;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <ObjectFileName>debug\</ObjectFileName>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <WarningLevel>Level3</WarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>.\openal\libs\OpenAL32.lib;.\DLL_Libs\assimp-vc143-mt.lib;$(QTDIR)\lib\Qt6Widgetsd.lib;$(QTDIR)\lib\Qt6OpenGLd.lib;$(QTDIR)\lib\Qt6Guid.lib;$(QTDIR)\lib\Qt6Cored.lib;$(QTDIR)\lib\Qt6EntryPointd.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreImportLibrary>true</IgnoreImportLibrary>
+      <OutputFile>$(OutDir)\3D-programmering.exe</OutputFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <SubSystem>Windows</SubSystem>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Link>
+    <Midl>
+      <DefaultCharType>Unsigned</DefaultCharType>
+      <EnableErrorChecks>None</EnableErrorChecks>
+      <WarningLevel>0</WarningLevel>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_WIDGETS_LIB;QT_OPENGL_LIB;QT_GUI_LIB;QT_CORE_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <QtUic>
+      <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
+      <QtUicDir>$(ProjectDir)</QtUicDir>
+      <QtUicFileName>ui_%(Filename).h</QtUicFileName>
+    </QtUic>
+    <QtMoc>
+      <CompilerFlavor>msvc</CompilerFlavor>
+      <Include>./$(Configuration)/moc_predefs.h</Include>
+      <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
+      <DynamicSource>output</DynamicSource>
+      <QtMocDir>$(Configuration)</QtMocDir>
+      <QtMocFileName>moc_%(Filename).cpp</QtMocFileName>
+    </QtMoc>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Mesh\Billboard\BillBoard.cpp" />
+    <ClCompile Include="Levels\HeightmapLevel.cpp" />
+    <ClCompile Include="Mesh\Pawn\Pawn.cpp" />
+    <ClCompile Include="Mesh\Static\DebugShapes.cpp" />
+    <ClCompile Include="Physics\Collision.cpp" />
+    <ClCompile Include="Mesh\Static\BezierCurve.cpp" />
+    <ClCompile Include="Physics\BoundingBox.cpp" />
+    <ClCompile Include="Core\Camera.cpp" />
+    <ClCompile Include="CodeGraveYard\VisualObject\Cube.cpp" />
+    <ClCompile Include="Mesh\DebugTriangle.cpp" />
+    <ClCompile Include="Mesh\Static\Door.cpp" />
+    <ClCompile Include="Mesh\Static\Graph.cpp" />
+    <ClCompile Include="Mesh\Static\Heightmap.cpp" />
+    <ClCompile Include="Mesh\Static\House.cpp" />
+    <ClCompile Include="Mesh\Static\IdentityCube.cpp" />
+    <ClCompile Include="Levels\InsideHouse.cpp" />
+    <ClCompile Include="Levels\Level.cpp" />
+    <ClCompile Include="Math\Mat4.cpp" />
+    <ClCompile Include="Mesh\Mesh.cpp" />
+    <ClCompile Include="CodeGraveYard\Model.cpp" />
+    <ClCompile Include="Mesh\ObjLoader.cpp" />
+    <ClCompile Include="CodeGraveYard\Object.cpp" />
+    <ClCompile Include="Levels\Oblig3.cpp" />
+    <ClCompile Include="Core\OctTree.cpp" />
+    <ClCompile Include="Levels\Outside.cpp" />
+    <ClCompile Include="Mesh\Pawn\Player.cpp" />
+    <ClCompile Include="Core\Texture.cpp" />
+    <ClCompile Include="CodeGraveYard\VisualObject\TriangelSurface.cpp" />
+    <ClCompile Include="Mesh\Static\Trophy.cpp" />
+    <ClCompile Include="Core\Utils.cpp" />
+    <ClCompile Include="Math\Vec3.cpp" />
+    <ClCompile Include="Math\Vertex.cpp" />
+    <ClCompile Include="CodeGraveYard\VisualObject\VisualObject.cpp" />
+    <ClCompile Include="CodeGraveYard\VisualObject\XYZ.cpp" />
+    <ClCompile Include="Core\logger.cpp" />
+    <ClCompile Include="Core\main.cpp" />
+    <ClCompile Include="Core\mainwindow.cpp" />
+    <ClCompile Include="Core\renderwindow.cpp" />
+    <ClCompile Include="Core\shader.cpp" />
+    <ClCompile Include="core\soundmanager.cpp" />
+    <ClCompile Include="Audio\soundsource.cpp" />
+    <ClCompile Include="Mesh\Static\SkyBox.cpp" />
+    <ClCompile Include="Physics\Shadows.cpp" />
+    <ClCompile Include="stb_image\stb_image.cpp" />
+    <ClCompile Include="Math\vector3.cpp" />
+    <ClCompile Include="Audio\wavfilereader.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Mesh\Billboard\BillBoard.h" />
+    <ClInclude Include="Levels\HeightmapLevel.h" />
+    <ClInclude Include="Mesh\Pawn\Pawn.h" />
+    <ClInclude Include="Mesh\Static\DebugShapes.h" />
+    <ClInclude Include="Physics\Collision.h" />
+    <ClInclude Include="Mesh\Static\BezierCurve.h" />
+    <ClInclude Include="Physics\BoundingBox.h" />
+    <ClInclude Include="Core\Camera.h" />
+    <ClInclude Include="CodeGraveYard\VisualObject\Cube.h" />
+    <ClInclude Include="Mesh\DebugTriangle.h" />
+    <ClInclude Include="Mesh\Static\Door.h" />
+    <ClInclude Include="Mesh\Static\Graph.h" />
+    <ClInclude Include="Mesh\Static\Heightmap.h" />
+    <ClInclude Include="Mesh\Static\House.h" />
+    <ClInclude Include="Mesh\Static\IdentityCube.h" />
+    <ClInclude Include="Levels\InsideHouse.h" />
+    <ClInclude Include="Levels\Level.h" />
+    <ClInclude Include="Math\Mat4.h" />
+    <ClInclude Include="Mesh\Mesh.h" />
+    <ClInclude Include="CodeGraveYard\Model.h" />
+    <ClInclude Include="Mesh\ObjLoader.h" />
+    <ClInclude Include="CodeGraveYard\Object.h" />
+    <ClInclude Include="Levels\Oblig3.h" />
+    <ClInclude Include="Core\OctTree.h" />
+    <ClInclude Include="Levels\Outside.h" />
+    <ClInclude Include="Mesh\Pawn\Player.h" />
+    <ClInclude Include="Core\Texture.h" />
+    <ClInclude Include="CodeGraveYard\VisualObject\TriangelSurface.h" />
+    <ClInclude Include="Mesh\Static\Trophy.h" />
+    <ClInclude Include="Core\Utils.h" />
+    <ClInclude Include="Math\Vec3.h" />
+    <ClInclude Include="Math\Vertex.h" />
+    <ClInclude Include="CodeGraveYard\VisualObject\VisualObject.h" />
+    <ClInclude Include="CodeGraveYard\VisualObject\XYZ.h" />
+    <ClInclude Include="Core\logger.h" />
+    <QtMoc Include="Core\mainwindow.h">
+    </QtMoc>
+    <QtMoc Include="Core\renderwindow.h">
+    </QtMoc>
+    <ClInclude Include="Core\shader.h" />
+    <ClInclude Include="core\soundmanager.h" />
+    <ClInclude Include="Audio\soundsource.h" />
+    <ClInclude Include="Mesh\Static\SkyBox.h" />
+    <ClInclude Include="Physics\Shadows.h" />
+    <ClInclude Include="stb_image\stb_image.h" />
+    <ClInclude Include="Math\vector3.h" />
+    <ClInclude Include="Audio\wavfilereader.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="debug\moc_predefs.h.cbt">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cl -Bx"$(QTDIR)\bin\qmake.exe" -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr -Zi -MDd -std:c++17 -utf-8 -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E $(QTDIR)\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;debug\moc_predefs.h</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generate moc_predefs.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_predefs.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="release\moc_predefs.h.cbt">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cl -Bx"$(QTDIR)\bin\qmake.exe" -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr -O2 -MD -std:c++17 -utf-8 -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E $(QTDIR)\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;release\moc_predefs.h</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generate moc_predefs.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_predefs.h;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="Core\mainwindow.ui">
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
+    <None Include=".qmake.stash" />
+    <None Include=".txt" />
+    <None Include="3Dprog22.pro.user" />
+    <None Include="3Dprog22.pro~RF2e165828.TMP" />
+    <None Include="3Dprog22.sln" />
+    <None Include="3Dprog22.vcxproj" />
+    <None Include="3Dprog22.vcxproj.filters" />
+    <None Include="3Dprog22.vcxproj.user" />
+    <None Include="Shaders\Billboard.frag" />
+    <None Include="Shaders\Billboard.vert" />
+    <None Include="Shaders\lightshadow.frag" />
+    <None Include="Shaders\lightshadow.vert" />
+    <None Include="Shaders\Shadow.frag" />
+    <None Include="Shaders\Shadow.geom" />
+    <None Include="Shaders\Shadow.vert" />
+    <None Include="Shaders\Skybox.frag" />
+    <None Include="Shaders\Skybox.vert" />
+    <None Include="Textures\Drue.png" />
+    <None Include="OpenAL32.dll" />
+    <None Include="README.md" />
+    <None Include="Textures\Rect.png" />
+    <None Include="Shaders\TextureShader.frag" />
+    <None Include="TextureShader.frag" />
+    <None Include="Shaders\TextureShader.vert" />
+    <None Include="TextureShader.vert" />
+    <None Include="TriangleSurface.txt" />
+    <None Include="Textures\UvCheckers.jpg" />
+    <None Include="Shaders\WireFrame.frag" />
+    <None Include="Shaders\WireFrame.vert" />
+    <None Include="Textures\WoodCabinDif.jpg" />
+    <None Include="Textures\awesomeface.png" />
+    <None Include="Textures\bird.png" />
+    <None Include="Textures\cherry.jpg" />
+    <None Include="Textures\cherry.png" />
+    <None Include="Shaders\color.frag" />
+    <None Include="Shaders\color.vert" />
+    <None Include="Textures\container.jpg" />
+    <None Include="Textures\dirt.jpg" />
+    <None Include="Textures\grape.jpg" />
+    <None Include="graph.txt" />
+    <None Include="Textures\grass.jpg" />
+    <None Include="Textures\ground.jpg" />
+    <None Include="interpolfunc.txt" />
+    <None Include="Textures\kirby.jpg" />
+    <None Include="Shaders\light.frag" />
+    <None Include="Shaders\light.vert" />
+    <None Include="Shaders\plainshader.frag" />
+    <None Include="plainshader.frag" />
+    <None Include="Shaders\plainshader.vert" />
+    <None Include="plainshader.vert" />
+    <None Include="quadtraticfunc.txt" />
+    <None Include="Textures\skin.jpg" />
+    <None Include="Textures\spike.jpg" />
+    <None Include="Textures\square.png" />
+    <None Include="Textures\star.jpg" />
+    <None Include="Textures\tree.jpg" />
+    <None Include="Textures\white.jpg" />
+    <None Include="Textures\wood.jpg" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

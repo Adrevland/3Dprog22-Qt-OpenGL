@@ -1,0 +1,163 @@
+QT          += core gui widgets opengl
+
+TEMPLATE    = app
+CONFIG      += c++17
+
+TARGET      = 3D-programmering
+
+SOURCES += main.cpp \
+    Camera.cpp \
+    Levels/InsideHouse.cpp \
+    Levels/Level.cpp \
+    Levels/Outside.cpp \
+    Math/Mat4.cpp \
+    Math/Vec3.cpp \
+    Mesh/BezierCurve.cpp \
+    Mesh/Door.cpp \
+    Mesh/Graph.cpp \
+    Mesh/House.cpp \
+    Mesh/IdentityCube.cpp \
+    Mesh/Mesh.cpp \
+    Mesh/ObjLoader.cpp \
+    Mesh/Player.cpp \
+    Mesh/Trophy.cpp \
+    Model.cpp \
+    Object.cpp \
+    OctTree.cpp \
+    Physics/BoundingBox.cpp \
+    Texture.cpp \
+    Vertex.cpp \
+    VisualObject/Cube.cpp \
+    VisualObject/TriangelSurface.cpp \
+    VisualObject/VisualObject.cpp \
+    VisualObject/XYZ.cpp \
+    logger.cpp \
+    mainwindow.cpp \
+    renderwindow.cpp \
+    shader.cpp \
+    stb_image.cpp
+    soundsource.cpp \
+    soundmanager.cpp \
+    vector3.cpp \
+    wavfilereader.cpp
+
+
+HEADERS += \
+    Camera.h \
+    Levels/InsideHouse.h \
+    Levels/Level.h \
+    Levels/Outside.h \
+    Math/Mat4.h \
+    Math/Vec3.h \
+    Mesh/BezierCurve.h \
+    Mesh/Door.h \
+    Mesh/Graph.h \
+    Mesh/House.h \
+    Mesh/IdentityCube.h \
+    Mesh/Mesh.h \
+    Mesh/ObjLoader.h \
+    Mesh/Player.h \
+    Mesh/Trophy.h \
+    Model.h \
+    Object.h \
+    OctTree.h \
+    Physics/BoundingBox.h \
+    Texture.h \
+    Vertex.h \
+    VisualObject/Cube.h \
+    VisualObject/TriangelSurface.h \
+    VisualObject/VisualObject.h \
+    VisualObject/XYZ.h \
+    logger.h \
+    mainwindow.h \
+    renderwindow.h \
+    shader.h \
+    ui_mainwindow.h\
+    glm/glm.hpp
+    soundmanager.h \
+    soundsource.h \
+    vector3.h \
+    wavfilereader.h
+
+FORMS += \
+    mainwindow.ui
+
+DISTFILES += \
+    .gitignore \
+    .qmake.stash \
+    .txt \
+    3Dprog22.pro.user \
+    3Dprog22.sln \
+    3Dprog22.vcxproj \
+    3Dprog22.vcxproj.filters \
+    3Dprog22.vcxproj.user \
+    README.md \
+    Shaders/TextureShader.frag \
+    Shaders/TextureShader.vert \
+    Shaders/WireFrame.frag \
+    Shaders/WireFrame.vert \
+    Shaders/color.frag \
+    Shaders/color.vert \
+    Shaders/light.frag \
+    Shaders/light.vert \
+    Shaders/plainshader.frag \
+    Shaders/plainshader.vert \
+    TextureShader.frag \
+    TextureShader.vert \
+    Textures/Drue.png \
+    Textures/Rect.png \
+    Textures/UvCheckers.jpg \
+    Textures/WoodCabinDif.jpg \
+    Textures/awesomeface.png \
+    Textures/bird.png \
+    Textures/cherry.jpg \
+    Textures/cherry.png \
+    Textures/container.jpg \
+    Textures/dirt.jpg \
+    Textures/grape.jpg \
+    Textures/grass.jpg \
+    Textures/ground.jpg \
+    Textures/kirby.jpg \
+    Textures/skin.jpg \
+    Textures/spike.jpg \
+    Textures/square.png \
+    Textures/star.jpg \
+    Textures/tree.jpg \
+    Textures/white.jpg \
+    Textures/wood.jpg \
+    TriangleSurface.txt \
+    graph.txt \
+    interpolfunc.txt \
+    plainshader.frag \
+
+    plainshader.vert \
+    quadtraticfunc.txt
+
+    plainshader.vert
+
+#Set up dependencies for OpenAL
+mac {
+    LIBS += -framework OpenAL
+}
+
+win32 {
+    INCLUDEPATH += ./openal/include/AL
+    LIBS += $$PWD/openal/libs/OpenAL32.lib
+
+# Copy required DLL to output directory
+        CONFIG(debug, debug|release) {
+            OpenAL32.commands = copy /Y \"$$PWD\\openal\\dlls\\OpenAL32.dll\" debug
+            OpenAL32.target = debug/OpenAL32.dll
+
+            QMAKE_EXTRA_TARGETS += OpenAL32
+            PRE_TARGETDEPS += debug/OpenAL32.dll
+        } else:CONFIG(release, debug|release) {
+            OpenAL32.commands = copy /Y \"$$PWD\\openal\\dlls\\OpenAL32.dll\" release
+            OpenAL32.target = release/OpenAL32.dll
+
+            QMAKE_EXTRA_TARGETS += OpenAL32
+            PRE_TARGETDEPS += release/OpenAL32.dll release/OpenAL32.dll
+        } else {
+            error(Unknown set of dependencies.)
+        }
+}
