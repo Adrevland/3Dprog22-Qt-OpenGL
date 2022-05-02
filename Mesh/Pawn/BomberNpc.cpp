@@ -65,5 +65,5 @@ void BomberNpc::tick()
 
 void BomberNpc::dropbomb()
 {
-	LOG_REALERROR("Dropping bomb XD!");
+	LOG_WARNING("Dropping bomb XD!");
 }

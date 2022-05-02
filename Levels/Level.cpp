@@ -38,8 +38,6 @@ void Level::init()
     mShaderPrograms["color"] = RenderWindow::Get()->getShader("color");
     mShaderPrograms["lightshadow"] = RenderWindow::Get()->getShader("lightshadow");
 
-
-
 }
 
 void Level::render()

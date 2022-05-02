@@ -40,7 +40,7 @@ public:
 	virtual void ButtonPress(int Button);
 	virtual void destroy();
 
-	void checkOverlap(Mesh* mesh);
+	virtual void checkOverlap(Mesh* mesh);
 	void drawMode(int drawmode) { mDrawMode = drawmode;};
 	glm::vec3 getLocation() const { return glm::vec3(mModelMat[3][0], mModelMat[3][1], mModelMat[3][2]); }
 	glm::vec3 getScale() const { return glm::vec3(mModelMat[0][0], mModelMat[1][1], mModelMat[2][2]); }

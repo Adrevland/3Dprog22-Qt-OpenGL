@@ -30,6 +30,7 @@ public:
 	//getters
 	glm::vec3 getFront() { updateView(); return mFront; }
 	glm::vec3 getUp() { updateView(); return mUp; }
+	glm::vec3 getWorldup() { return worldup; }
 	glm::vec3 getLocation() { updateView(); return mLocation; }
 	glm::vec3 getRight() { updateView(); return mRight; }
 	glm::mat4 getProjection() { updateProjection();  return mProjection; }
