@@ -37,7 +37,7 @@ bool Player::onBeginOverlap(CollisionPrimitive* primitive)
 void Player::tick(float deltatime)
 {
 	//movement
-	if(!bstunned){
+	if(!stunned){
 		forwardspeed = 0.f;
 		rightspeed = 0.f;
 		float upspeed{ 0.f };
@@ -116,7 +116,8 @@ void Player::tick(float deltatime)
 
 	if(secondsStunned >= 2)
 	{
-		bstunned = false;
+		LOG_WARNING("PLAYER NO LONGER STUNNED");
+		stunned = false;
 		lasttime = std::chrono::high_resolution_clock::now();
 	}
 	//move player

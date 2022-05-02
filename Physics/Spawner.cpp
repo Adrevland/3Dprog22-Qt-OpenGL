@@ -51,3 +51,12 @@ void Spawner::draw()
 		mesh->draw();
 	}
 }
+
+bool Spawner::checkoverlapp(Mesh* mesh)
+{
+	for(auto& smesh: mSpawnedMeshes)
+	{
+		smesh->checkOverlap(mesh);
+	}
+	return false;
+}

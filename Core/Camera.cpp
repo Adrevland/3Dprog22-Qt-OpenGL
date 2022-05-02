@@ -1,5 +1,6 @@
 #include "Camera.h"
 
+#include "renderwindow.h"
 #include "Mesh/Mesh.h"
 
 Camera::Camera(float width, float height, float retinascale)
@@ -44,10 +45,47 @@ void Camera::followObject(Mesh* obj)
 	glm::vec3 objloc =  obj->getLocation();
 	
 	mLocation = objloc - mFront*mCamdistance;
-	
-	mTarget = objloc;
+	if (mLocation.z <= RENDERWINDOW->getLevel()->getHeightmap()->getHeight(mLocation)+4.f)
+	{
 
-	updateView();
+				mpitch -= 0.5f;
+				mTarget = objloc;
+
+				mDirection.x = cos(glm::radians(myaw)) * cos(glm::radians(mpitch));
+				mDirection.y = sin(glm::radians(myaw)) * cos(glm::radians(mpitch));
+				mDirection.z = sin(glm::radians(mpitch));
+
+				mFront = glm::normalize(mDirection);
+				mTarget = mLocation + mFront;
+				updateView();
+				updateProjection();
+
+	}
+	else if (mpitch < ppitch && mLocation.z >= RENDERWINDOW->getLevel()->getHeightmap()->getHeight(mLocation) + 10.f)
+	{
+
+			mpitch += 0.1f;
+			mTarget = objloc;
+
+			mDirection.x = cos(glm::radians(myaw)) * cos(glm::radians(mpitch));
+			mDirection.y = sin(glm::radians(myaw)) * cos(glm::radians(mpitch));
+			mDirection.z = sin(glm::radians(mpitch));
+
+			mFront = glm::normalize(mDirection);
+			mTarget = mLocation + mFront;
+			updateView();
+			updateProjection();
+
+	}
+	else
+	{
+		mTarget = objloc;
+
+		updateView();
+	}
+	
+
+	
 }
 
 void Camera::Zoom(double zoomAmount)

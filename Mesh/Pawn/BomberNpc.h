@@ -17,6 +17,8 @@ public:
 
 	void tick();
 	void dropbomb();
+
+	void checkoverlap(Mesh* mesh);
 private:
 	float speed{ 2.f };
 

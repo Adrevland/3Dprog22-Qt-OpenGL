@@ -41,6 +41,5 @@ private:
 	void move();
 	void rotate();
 	std::chrono::steady_clock::time_point lasttime;
-	bool bstunned{ false };
 };
 

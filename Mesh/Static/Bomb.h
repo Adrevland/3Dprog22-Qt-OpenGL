@@ -17,7 +17,7 @@ public:
 
     void tick();
     void explode();
-    virtual bool onBeginOverlap(CollisionPrimitive* primitive);
+	bool onBeginOverlap(CollisionPrimitive* primitive) override;
 
 protected:
     Spawner* owner{ nullptr };

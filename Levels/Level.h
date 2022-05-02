@@ -64,7 +64,7 @@ public:
 	void editorCamera();
 
 	Shadows* getShadowmap() { return mShadowMap; }
-
+	Player* getPlayer() { return mPlayer; }
 	Heightmap* getHeightmap() { return mHeightmap; }
 protected:
 	RenderWindow* mRenderWindow{nullptr};

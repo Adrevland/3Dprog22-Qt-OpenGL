@@ -16,7 +16,7 @@ Bomb::~Bomb()
 void Bomb::init()
 {
 	collision = new BSphere(getLocation(),Utils::radiusMesh(this));
-	
+	mCollisionPrimitive = collision;
 	Mesh::init();
 }
 
@@ -56,7 +56,13 @@ bool Bomb::onBeginOverlap(CollisionPrimitive* primitive)
 	if (Mesh::onBeginOverlap(primitive))
 	{
 		//todo stun npc and player
-
+		//stunning player either way
+		if(RENDERWINDOW->getLevel()->getPlayer()->getcollision() == primitive)
+		{
+			//todo fix
+			//RENDERWINDOW->getLevel()->getPlayer()->stun();
+		}
+		
 		destroy();
 		return true;
 	}

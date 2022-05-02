@@ -211,6 +211,7 @@ void EksamenLevel::render()
 		npcBomber->tick();
 
 		mOctTree->checkCollision(mPlayer);
+		if (npcBomber)npcBomber->checkoverlap(mPlayer);
 	}
 
 	//draw transparancy last

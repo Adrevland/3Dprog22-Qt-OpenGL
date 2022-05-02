@@ -61,6 +61,9 @@ public:
 	int getViewMode() { return mViewMode; }
 	
 	void drawShadowShader();
+
+	void stun() { if(!stunned)stunned = true; }
+	CollisionPrimitive* getcollision() { return mCollisionPrimitive; }
 private:
 	const char* whitetexture{ "./Textures/white.jpg" };
 	//Model* mModel{nullptr};
@@ -124,5 +127,7 @@ protected:
 	bool bDraw{ true };
 	bool bDebugLines{ false };
 	Logger* mLogger{ nullptr };
+
+	bool stunned{ false };
 };
 

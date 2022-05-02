@@ -14,6 +14,7 @@ public:
 	void spawn(float spawnintervall);
 	void destroy(Mesh* mesh);
 	void draw();
+	bool checkoverlapp(Mesh* mesh);
 private:
 	const char* mObj;
 	const char* mTexture;

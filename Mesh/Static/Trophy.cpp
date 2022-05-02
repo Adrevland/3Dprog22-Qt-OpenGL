@@ -25,6 +25,7 @@ bool Trophy::onBeginOverlap(CollisionPrimitive* primitive)
 {
 	if(Mesh::onBeginOverlap(primitive))
 	{
+		//todo send points
 		destroy();
 		return true;
 	}

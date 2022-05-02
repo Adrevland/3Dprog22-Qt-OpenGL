@@ -208,7 +208,7 @@ void Mesh::drawShadowShader()
 
 bool Mesh::onBeginOverlap(CollisionPrimitive* primitive)
 {
-	if (!primitive) return false;
+	if (!primitive || mCollisionPrimitive == primitive) return false;
 	if (mCollisionPrimitive->isOverlapping(primitive))
 	{
 		return true;
