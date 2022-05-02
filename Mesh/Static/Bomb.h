@@ -1,6 +1,7 @@
 #pragma once
 #include "Mesh/Mesh.h"
 
+class Spawner;
 class Heightmap;
 
 class Bomb :
@@ -8,7 +9,7 @@ class Bomb :
 {
 public:
 
-    Bomb(const char* obj, const char* texture, Heightmap* hmap, glm::vec3 spawnlocation);
+    Bomb(const char* obj, const char* texture, Heightmap* hmap, glm::vec3 spawnlocation,Spawner* spawn);
     ~Bomb();
 
     void init() override;
@@ -19,7 +20,9 @@ public:
     virtual bool onBeginOverlap(CollisionPrimitive* primitive);
 
 protected:
+    Spawner* owner{ nullptr };
 
+    bool bexploded{ false };
     BSphere* collision{ nullptr };
     Heightmap* mHeightmap{nullptr};
 };

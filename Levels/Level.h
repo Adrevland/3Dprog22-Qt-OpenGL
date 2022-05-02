@@ -65,7 +65,7 @@ public:
 
 	Shadows* getShadowmap() { return mShadowMap; }
 
-	
+	Heightmap* getHeightmap() { return mHeightmap; }
 protected:
 	RenderWindow* mRenderWindow{nullptr};
 	

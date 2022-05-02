@@ -2,6 +2,8 @@
 #include "Mesh/Mesh.h"
 #include <chrono>
 
+class Spawner;
+
 class BomberNpc
 	:public Mesh
 {
@@ -23,5 +25,5 @@ private:
 	int veclocation{ 0 };
 	int vecsize{ 0 };
 	std::vector<glm::vec3> followpoints;
-
+	Spawner* spawner;
 };

@@ -236,6 +236,7 @@
     <ClCompile Include="Audio\soundsource.cpp" />
     <ClCompile Include="Mesh\Static\SkyBox.cpp" />
     <ClCompile Include="Physics\Shadows.cpp" />
+    <ClCompile Include="Physics\Spawner.cpp" />
     <ClCompile Include="stb_image\stb_image.cpp" />
     <ClCompile Include="Math\vector3.cpp" />
     <ClCompile Include="Audio\wavfilereader.cpp" />
@@ -288,6 +289,7 @@
     <ClInclude Include="Audio\soundsource.h" />
     <ClInclude Include="Mesh\Static\SkyBox.h" />
     <ClInclude Include="Physics\Shadows.h" />
+    <ClInclude Include="Physics\Spawner.h" />
     <ClInclude Include="stb_image\stb_image.h" />
     <ClInclude Include="Math\vector3.h" />
     <ClInclude Include="Audio\wavfilereader.h" />

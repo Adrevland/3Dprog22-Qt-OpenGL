@@ -2,6 +2,7 @@
 #include "Core/renderwindow.h"
 #include "glm/glm.hpp"
 #include <chrono>
+#include "Physics/Spawner.h"
 
 BomberNpc::BomberNpc(const char* obj, const char* texture, Mesh* Verticestofollow)
 	:Mesh(RENDERWINDOW->getShader("lightshadow"), glm::mat4{ 1.f }, obj, texture)
@@ -26,6 +27,7 @@ BomberNpc::~BomberNpc()
 
 void BomberNpc::init()
 {
+	spawner = new Spawner(this, "../3Dprog22/ObjFiles/Kirby.obj", "../3Dprog22/Textures/kirby.jpg",RENDERWINDOW->getLevel()->getHeightmap());
 	mModelMat = glm::scale(mModelMat, glm::vec3(10.f));
 	lasttime = std::chrono::high_resolution_clock::now();
 	Mesh::init();
@@ -33,6 +35,7 @@ void BomberNpc::init()
 
 void BomberNpc::draw()
 {
+	if (spawner)spawner->draw();
 	Mesh::draw();
 }
 
@@ -65,5 +68,6 @@ void BomberNpc::tick()
 
 void BomberNpc::dropbomb()
 {
+	spawner->spawn(0);
 	LOG_WARNING("Dropping bomb XD!");
 }
