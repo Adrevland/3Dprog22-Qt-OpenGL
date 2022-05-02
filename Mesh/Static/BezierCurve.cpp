@@ -18,32 +18,47 @@ void BezierCurve::draw()
 {
 	Mesh::draw();
 
-	for(auto& points: mControlPoints)
-	{
-		glm::mat4 mat = glm::translate(glm::mat4(1.f), points);
-		RENDERWINDOW->drawDebugShape("sphere", mat);
-	}
-	for (int i = 0; i < mControlPoints.size()-1; ++i)
-	{
-		RENDERWINDOW->drawDebugLine(mControlPoints[i], mControlPoints[i + 1], glm::vec3(1.f));
+	//set to true if you want to draw control points and calculating lines
+	if(false){
+		for(auto& points: mControlPoints)
+		{
+			glm::mat4 mat = glm::translate(glm::mat4(1.f), points);
+			RENDERWINDOW->drawDebugShape("sphere", mat);
+
+		}
+		if (mVisualLines) mVisualLines->draw();
 	}
 }
 
 void BezierCurve::init()
 {
 	//visual lines
-
-	glm::vec3 color{125/255.f, 255/255.f , 50/255.f };
+	std::vector<Vertex> tmpvertices;
+	//glm::vec3 color{125/255.f, 255/255.f , 50/255.f };
+	glm::vec3 color(1.f);
 	const float stepsize{ 0.0001f };
 	for (float t{0.f}; t < 1.f + stepsize/2.f; t += stepsize)
 	{
 		glm::vec3 tmp = calcBezier(t);
 		mVertices.emplace_back(Vertex(tmp.x, tmp.y, tmp.z, color.r, color.g, color.b));
+
+		
 	}
+	for (auto& points : mControlPoints)
+	{
+		tmpvertices.emplace_back(Vertex(points.x, points.y, points.z));
+	}
+
+	mVisualLines = new Mesh(RENDERWINDOW->getShader("debug"), glm::mat4(1.f), tmpvertices, GL_LINE_STRIP);
+	mVisualLines->init();
 
 	Mesh::init();
 
+	
 }
+	
+
+
 
 glm::vec3 BezierCurve::calcBezier(float t)
 {

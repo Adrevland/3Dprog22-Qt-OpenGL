@@ -175,6 +175,7 @@ void RenderWindow::init()
     std::vector<Vertex> linevert;
     std::vector<unsigned int> lineind;
     mDebugShapes["line"] = new DebugShapes(linevert, lineind);
+
     for (auto& mesh: mDebugShapes)
     {
         mesh.second->init();

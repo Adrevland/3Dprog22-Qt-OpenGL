@@ -18,6 +18,6 @@ public:
 private:
 
     std::vector<glm::vec3> mControlPoints;
-
+    Mesh* mVisualLines;
 };
 

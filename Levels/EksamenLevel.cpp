@@ -45,7 +45,7 @@ void EksamenLevel::init()
 	}
 	mBezier = new BezierCurve(bezierpoints);
 	mBezier->init();
-
+	//mMeshes.emplace_back(mBezier);
 	//billboards sun //todo change to mesh sun
 	//mBillboards.emplace_back(new BillBoard("../3Dprog22/Assets/Textures/Quantamagazine-scaled.jpg"));
 	////mBillboards.emplace_back(new BillBoard("../3Dprog22/Assets/Textures/OleSolpepega.jpg"));
