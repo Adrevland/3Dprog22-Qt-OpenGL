@@ -147,6 +147,8 @@ void EksamenLevel::render()
 		mCameraMesh->setModelMat(translation * rotationmat);
 
 		mCameraMesh->draw();
+		glm::mat4 xyzscale = glm::scale(glm::mat4{ 1.f }, glm::vec3(1000.f));
+		RENDERWINDOW->drawDebugShape("xyz", xyzscale);
 	}
 	if (bDebugLines)
 	{

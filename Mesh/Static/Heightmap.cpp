@@ -50,15 +50,6 @@ float Heightmap::getHeight(glm::vec3 pos)
 	int d = ((int)point.x * mWidth) + (int)point.y + 1;
 	
 
-	/*auto a = x * height + y;
-	auto b = (x + 1) * height + (y + 1);
-	auto c = x * height + (y + 1);
-	auto d = (x + 1) * height + y;*/
-
-	/*auto a = point.y * mHeight + point.x;
-	auto b = (point.y + 1) * mHeight + point.x + 1;
-	auto c = (point.y) * mHeight + point.x + 1;
-	auto d = (point.y + 1) * mHeight + point.x;*/
 
 	if (c > mVertices.size())
 		return 1;
@@ -67,12 +58,6 @@ float Heightmap::getHeight(glm::vec3 pos)
 	glm::vec2 vecb = glm::vec2(mVertices[b].x, mVertices[b].y);
 	glm::vec2 vecc = glm::vec2(mVertices[c].x, mVertices[c].y);
 	glm::vec2 vecd = glm::vec2(mVertices[d].x, mVertices[d].y);
-
-	//flips x and y
-	/*glm::vec2 veca = glm::vec2(mVertices[a].y, mVertices[a].x);
-	glm::vec2 vecb = glm::vec2(mVertices[b].y, mVertices[b].x);
-	glm::vec2 vecc = glm::vec2(mVertices[c].y, mVertices[c].x);
-	glm::vec2 vecd = glm::vec2(mVertices[d].y, mVertices[d].x);*/
 
 
 	glm::vec3 baryLocation = Utils::Barycentric(point, veca, vecb, vecd);
@@ -129,11 +114,7 @@ void Heightmap::readmap()
 				for (int y = 0; y < width; y += 1)
 				{
 					float z = data[x * width + y]*mSize;
-					
-					/*float z = data[x * height + y] * mSize;*/
-					//try normalize the z value
-					/*auto clampZ = std::clamp(z, lastZ-(magicnumber *mSize), lastZ + (magicnumber * mSize));
-					lastZ = clampZ;*/
+
 					mVertices.emplace_back(glm::vec3(x,y,z),glm::vec3( 0.f, 0.f, 1.f),glm::vec2(0.f,0.f));
 
 				}
@@ -143,10 +124,7 @@ void Heightmap::readmap()
 			{
 				for (int y = 0; y < width-1; y += 1)
 				{
-					/*auto a = y * width + x;
-					auto b = (y+1) * width + (x+1);
-					auto c = y * width + (x+1);
-					auto d = (y+1) * width + x;*/
+
 
 					auto a = x * width + y;
 					auto b = (x + 1) * width + y;
@@ -164,16 +142,7 @@ void Heightmap::readmap()
 					mIndices.emplace_back(c); //c
 					mIndices.emplace_back(d); //d
 
-					// (1/width)*x + (1/width)*y
-					//uv
-					/*mVertices[(x * width) + y].copyUvs(glm::vec2(0, 0));
-					mVertices[((x + 1) * width) + y + 1].copyUvs(glm::vec2(1, 1));
-					mVertices[(x * width) + y + 1].copyUvs(glm::vec2(0, 1));
-					mVertices[(x+1 * width) + y].copyUvs(glm::vec2(1, 0));*/
-					/*mVertices[(x * width) + y].copyUvs(glm::vec2((1.f / width) * x, (1.f/ height)*y));
-					mVertices[((x + 1) * width) + y + 1].copyUvs(glm::vec2((1.f / width) * (x + 1), (1.f / height) * (y+1)));
-					mVertices[(x * width) + y + 1].copyUvs(glm::vec2((1.f / width) * x, (1.f / height) * (y+1)));
-					mVertices[((x+1) * width) + y].copyUvs(glm::vec2((1.f / width) *( x+1), (1.f / height) * y));*/
+
 				}
 			}
 
@@ -200,12 +169,7 @@ void Heightmap::readmap()
 					auto a4 = glm::cross(e - a, g - a);
 					auto a5 = glm::cross(g - a, f - a);
 
-					/*auto a0 = glm::cross(b - a, f - a);
-					auto a1 = glm::cross(d - a, b - a);
-					auto a2 = glm::cross(c - a, d - a);
-					auto a3 = glm::cross(e - a, c - a);
-					auto a4 = glm::cross(g - a, e - a);
-					auto a5 = glm::cross(f - a, g - a);*/
+
 
 					glm::vec3 normal = glm::normalize(a0+a1+a2+a3+a4+a5);
 					mVertices[(x * height) + y].copyNormals(normal);

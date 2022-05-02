@@ -16,7 +16,6 @@ void DebugShapes::draw(glm::mat4 modelMat)
 {
 
 	RenderWindow::Get()->getShader("debug")->use();
-
 	glBindVertexArray(mVAO);
 	glBindBuffer(GL_ARRAY_BUFFER, mVBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mEBO);
@@ -26,7 +25,11 @@ void DebugShapes::draw(glm::mat4 modelMat)
 	glUniformMatrix4fv(mViewLoc, 1, GL_FALSE, glm::value_ptr(RenderWindow::Get()->getCamera()->getView()));
 	glUniformMatrix4fv(mProjectionLoc, 1, GL_FALSE, glm::value_ptr(RenderWindow::Get()->getCamera()->getProjection()));
 
-	glDrawElements(GL_LINE_STRIP, mIndices.size(), GL_UNSIGNED_INT, 0);
+	if (mIndices.empty())
+		glDrawArrays(GL_LINE_STRIP, 0, mVertices.size());
+	else
+		glDrawElements(GL_LINE_STRIP, mIndices.size(), GL_UNSIGNED_INT, 0);
+	//glDrawElements(GL_LINE_STRIP, mIndices.size(), GL_UNSIGNED_INT, 0);
 }
 
 void DebugShapes::init()

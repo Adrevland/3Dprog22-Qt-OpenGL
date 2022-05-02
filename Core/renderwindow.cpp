@@ -131,7 +131,7 @@ void RenderWindow::init()
     //auto b = glm::vec2(1.f / 2.f, 1.f / 2.f);
     //auto c = glm::vec2(-1.f / 2.f, 1.f);
     //auto ans = Utils::Barycentric(p, a, b,c );
-
+    
 
     mShaderProgram["Texture"] = new Shader("../3Dprog22/Shaders/TextureShader.vert", "../3Dprog22/Shaders/TextureShader.frag");
     mShaderProgram["light"] = new Shader("../3Dprog22/Shaders/light.vert", "../3Dprog22/Shaders/light.frag");
@@ -142,7 +142,29 @@ void RenderWindow::init()
     mShaderProgram["lightshadow"] = new Shader("../3Dprog22/Shaders/lightshadow.vert", "../3Dprog22/Shaders/lightshadow.frag");
     mShaderProgram["billboard"] = new Shader("../3Dprog22/Shaders/Billboard.vert", "../3Dprog22/Shaders/Billboard.frag");
 
+	//oppgave 6
 	//Make debug Shapes
+    std::vector<Vertex> xyzvert;
+    xyzvert.emplace_back(Vertex(0.f,0.f,0.f,
+								1.f,0.f,0.f,
+								0.f,0.f)); // x red
+    xyzvert.emplace_back(Vertex(1.f, 0.f, 0.f,
+						        1.f, 0.f, 0.f,
+						        0.f, 0.f)); // x red 
+    xyzvert.emplace_back(Vertex(0.f, 0.f, 0.f,
+						        0.f, 1.f, 0.f,
+						        0.f, 0.f)); // y green
+    xyzvert.emplace_back(Vertex(0.f, 1.f, 0.f,
+						        0.f, 1.f, 0.f,
+						        0.f, 0.f)); // y green
+    xyzvert.emplace_back(Vertex(0.f, 0.f, 0.f,
+						        0.f, 0.f, 1.f,
+						        0.f, 0.f)); // z blue
+    xyzvert.emplace_back(Vertex(0.f, 0.f, 1.f,
+						        0.f, 0.f, 1.f,
+						        0.f, 0.f)); // z blue
+    std::vector<unsigned int> xyzindices;
+    mDebugShapes["xyz"] = new DebugShapes(xyzvert, xyzindices);
     ObjLoader* cube = new ObjLoader("../3Dprog22/ObjFiles/IdentityCube.obj");
     cube->init();
     mDebugShapes["cube"] = new DebugShapes(cube->getVertices(),cube->getIndices());
@@ -211,6 +233,8 @@ void RenderWindow::toggleDebugLines()
 
 void RenderWindow::drawDebugShape(std::string shape, glm::mat4 modelmat)
 {
+    if(shape == "xyz")
+        glClear(GL_DEPTH_BUFFER_BIT); // clear debpth buffer to make xyz in front of everything
     mDebugShapes[shape]->draw(modelmat);
 }
 

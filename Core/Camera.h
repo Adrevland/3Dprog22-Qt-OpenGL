@@ -24,7 +24,7 @@ public:
 	void setLocation(const glm::vec3 newpos) { mLocation = newpos; updateView(); }
 	void updateWinSize(float width, float height, float retinascale);
 	void setTarget(glm::vec3 target) { mTarget = target; updateView(); }
-
+	void setPlayeryaw(float yaw) { pyaw = yaw; };
 	
 
 	//getters
@@ -47,6 +47,14 @@ public:
 	glm::vec3 PlayerCamForward{ 1.f };
 	glm::vec3 PlayerCamRight{ 1.f };
 
+
+	void resetrotation()
+	{
+		mpitch = ppitch;
+		myaw = pyaw;
+		mroll = proll;
+		updateView();
+	}; // set default rotation
 private:
 
 	
@@ -70,6 +78,8 @@ private:
 	float mZFar{ 1000.f };
 
 	float myaw{ -90.f }, mpitch{-10.f}, mroll{0.f};
+	float pyaw{ -90.f }, ppitch{ -10.f }, proll{ 0.f }; // player default values
+
 	float fov{ 45.0f };
 
 	glm::mat4 mProjection{ 1.f };

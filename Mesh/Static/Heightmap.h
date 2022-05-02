@@ -1,6 +1,7 @@
 #pragma once
 #include "Mesh/Mesh.h"
 
+//oppgave 2
 class Heightmap :
     public Mesh
 {

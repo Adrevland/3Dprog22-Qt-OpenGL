@@ -70,33 +70,41 @@ void Player::tick(float deltatime)
 	forwardspeed = std::clamp(forwardspeed, -speed, speed);
 
 	//calc direction
-	glm::vec3 rightvector = mCamera->getRight() * rightspeed;
+	//glm::vec3 rightvector = mCamera->getRight() * rightspeed;
+	float rotateright = rightspeed;
 	glm::vec3 frontvector = mCamera->getFront() * forwardspeed;
 	frontvector.z = 0.f;
 	/*frontvector *= -1.f;*/
-	glm::vec3 movevector = glm::normalize(frontvector + rightvector);
-
-	glm::vec3 velocity = movevector;
+	//glm::vec3 movevector = glm::normalize(frontvector + rightvector);
+	glm::vec3 movevector = glm::normalize(frontvector);
+	glm::vec3 velocity = -movevector;
 	velocity = -glm::normalize(velocity);
-
+	mCamera->rotate(-rotateright*2, 0);
 	if(!glm::any(glm::isnan(velocity)))
 	{
 		glm::vec3 right = glm::cross(velocity , glm::vec3(0.f, 0.f, 1.f) );
+		//glm::vec3 right = mCamera->getRight();
+		right.z = 0.f;
+		right = glm::normalize(right);
+		glm::vec3 front = mCamera->getFront();
+		front.z = 0.f;
+		front = glm::normalize(front);
 		glm::mat4 rotationmat = {
 			{right,0.f},
 			{velocity,0.f},
 			{0.f,0.f,1.f,0.f},
 			{0.f,0.f,0.f,1.f},
 		};
-
-		glm::vec3 lastpos = getLocation();
-		mModelMat = glm::mat4{ 1.f };
-		//setLocation(lastpos + movevector*speed);
-		setLocation(lastpos + (mCamera->getFront()*forwardspeed) * speed);
-		glm::mat4 translation = glm::translate(mModelMat, movevector*speed);
-		mModelMat = translation*rotationmat;
+		//glm::mat4 rotationmat = glm::lookAt(mCamera->getLocation(), mCamera->getFront(), glm::vec3(0.f, 0.f, 1.f));
+	//	glm::vec3 lastpos = getLocation();
+	//	mModelMat = glm::mat4{ 1.f };
+	//	//setLocation(lastpos + movevector*speed);
+	//	setLocation(lastpos + (mCamera->getFront()*forwardspeed) * speed);
+	//	
+		
+		glm::mat4 translation = glm::translate(mModelMat, velocity * speed);
+		mModelMat = translation;// *rotationmat;
 		move();
-
 
 		/*mModelMat = rotationmat;*/
 		

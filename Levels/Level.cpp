@@ -52,6 +52,7 @@ void Level::render()
         mCamera->PlayerCamLocation = mCamera->getLocation();
         mCamera->PlayerCamForward = mCamera->getFront();
         mCamera->PlayerCamRight = mCamera->getRight();
+        mCamera->setPlayeryaw(mCamera->getYaw());
     }
     if (CameraType == CAMERAMODE::Flying)
         editorCamera();
@@ -139,10 +140,15 @@ void Level::setViewMode()
 
 void Level::setCameramode()
 {
-    if (CameraType == CAMERAMODE::Follow) 
-        CameraType = CAMERAMODE::Flying;
+    if (CameraType == CAMERAMODE::Follow)
+    {
+	    CameraType = CAMERAMODE::Flying;
+    }
     else
-       CameraType = CAMERAMODE::Follow;
+    {
+	    CameraType = CAMERAMODE::Follow;
+        mCamera->resetrotation();
+    }
 }
 
 void Level::setDebugLines()

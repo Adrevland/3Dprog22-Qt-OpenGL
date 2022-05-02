@@ -21,7 +21,7 @@ public:
 	void tick(float deltatime);
 	void setSpeed(float s)
 	{
-		speed = s/100;
+		speed = s/50;
 		if (s <= 0) speed = 0.1f;
 	}
 	void sendKeyboard(std::unordered_map<int,bool>&keyInput);
@@ -32,7 +32,7 @@ private:
 	float forwardspeed{ 0 };
 	float rightspeed{ 0 };
 
-	float speed{ 0.1f };
+	float speed{ 0.5f };
 
 	DebugTriangle* mBarytriangle{nullptr};
 	Heightmap* mHeightmap{nullptr};

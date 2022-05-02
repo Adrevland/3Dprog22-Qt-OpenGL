@@ -18,6 +18,7 @@
 // You probably want to refactor these classes -
 // they are example classes, not very robust written
 
+//oppgave 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16
 int main(int argc, char* argv[])
 {
     //Forces the usage of desktop OpenGL - Qt uses OpenGL ES as default
