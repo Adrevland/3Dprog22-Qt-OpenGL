@@ -20,6 +20,7 @@
 #include "Levels/InsideHouse.h"
 #include "Levels/Outside.h"
 #include "stb_image/stb_image.h"
+#include "Levels/EksamenLevel.h"
 
 
 RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
@@ -157,7 +158,8 @@ void RenderWindow::init()
     mLevels.emplace_back(std::make_unique<InsideHouse>(this));
     mLevels.emplace_back(std::make_unique<HeightmapLevel> (this));*/
     //mLevels.emplace_back(new Outside(this));
-    mLevels.emplace_back(new Oblig3(this));
+    //mLevels.emplace_back(new Oblig3(this));
+    mLevels.emplace_back(new EksamenLevel());
     //mLevels.emplace_back(new InsideHouse(this));
     //mLevels.emplace_back(new HeightmapLevel(this));
     for (auto& mLevel : mLevels)

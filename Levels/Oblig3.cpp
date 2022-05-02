@@ -19,10 +19,6 @@ void Oblig3::init()
 	Level::init();
 
 	//make shaders
-	mShaderPrograms["Texture"] = RenderWindow::Get()->getShader("Texture");
-	mShaderPrograms["light"] = RenderWindow::Get()->getShader("light");
-	mShaderPrograms["color"] = RenderWindow::Get()->getShader("color");
-	mShaderPrograms["lightshadow"] = RenderWindow::Get()->getShader("lightshadow");
 
 	//biggest oct size
 	mOctTree = new OctTree(BoundingBox(glm::vec3(1.f), glm::vec3(1200.f), mShaderPrograms["color"]));

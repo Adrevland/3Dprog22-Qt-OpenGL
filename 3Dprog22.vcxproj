@@ -190,6 +190,7 @@
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Levels\EksamenLevel.cpp" />
     <ClCompile Include="Mesh\Billboard\BillBoard.cpp" />
     <ClCompile Include="Levels\HeightmapLevel.cpp" />
     <ClCompile Include="Mesh\Pawn\Pawn.cpp" />
@@ -238,6 +239,7 @@
     <ClCompile Include="Audio\wavfilereader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Levels\EksamenLevel.h" />
     <ClInclude Include="Mesh\Billboard\BillBoard.h" />
     <ClInclude Include="Levels\HeightmapLevel.h" />
     <ClInclude Include="Mesh\Pawn\Pawn.h" />

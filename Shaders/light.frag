@@ -11,7 +11,7 @@ uniform vec3 lightPos;
 uniform vec3 viewPos;
 uniform int ViewMode=0;
 
-uniform vec3 lightDir;
+//uniform vec3 lightDir;
 
 void main()
 {
@@ -26,7 +26,7 @@ void main()
     vec3 ambient = ambientStrength * lightColor;
 
     vec3 norm = normalize(normal);
-    //vec3 lightDir = normalize(lightPos - fragPos);  
+    vec3 lightDir = normalize(lightPos - fragPos);  
     //vec3 dir = normalize(lightDir - fragPos);  
     vec3 dir = normalize(lightDir);
 

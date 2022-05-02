@@ -33,6 +33,13 @@ void Level::init()
     //glEnable(GL_CULL_FACE);       //draws only front side of models - usually what you want - test it out!
     //glClearColor(21.f / 255, 17.f / 255.f, 51.f / 255.f, 1.0f);    //Background color used in glClear GL_COLOR_BUFFER_BIT
 
+    mShaderPrograms["Texture"] = RenderWindow::Get()->getShader("Texture");
+    mShaderPrograms["light"] = RenderWindow::Get()->getShader("light");
+    mShaderPrograms["color"] = RenderWindow::Get()->getShader("color");
+    mShaderPrograms["lightshadow"] = RenderWindow::Get()->getShader("lightshadow");
+
+
+
 }
 
 void Level::render()
@@ -207,7 +214,11 @@ void Level::deleteMesh(Mesh* mesh)
     {
         mMeshes.erase(it);
     }
-
+	it = std::find(mAllMeshes.begin(), mAllMeshes.end(), mesh);
+    if (it != mAllMeshes.end())
+    {
+        mAllMeshes.erase(it);
+    }
     //todo delete pointer
     //delete mesh; // crashes the program
 }
