@@ -5,12 +5,11 @@ class BezierCurve :
 {
 public:
 
-    BezierCurve(Shader* Shader, glm::mat4 modelMat);
+    BezierCurve(std::vector<glm::vec3> points);
     ~BezierCurve();
 
     void draw() override;
     void init() override;
-
 
     void setControlPoints(std::vector<glm::vec3> controlPoints) { mControlPoints = controlPoints; }
     std::vector<glm::vec3> getControlPoints() { return mControlPoints; }
@@ -20,7 +19,5 @@ private:
 
     std::vector<glm::vec3> mControlPoints;
 
-    std::vector<Mesh*> mVisualPoints;
-    Mesh* mVisualLines;
 };
 

@@ -171,7 +171,10 @@ void RenderWindow::init()
     ObjLoader* sphere = new ObjLoader("../3Dprog22/ObjFiles/Sphere.obj");
     sphere->init();
     mDebugShapes["sphere"] = new DebugShapes(sphere->getVertices(), sphere->getIndices());
-    
+
+    std::vector<Vertex> linevert;
+    std::vector<unsigned int> lineind;
+    mDebugShapes["line"] = new DebugShapes(linevert, lineind);
     for (auto& mesh: mDebugShapes)
     {
         mesh.second->init();
@@ -236,6 +239,12 @@ void RenderWindow::drawDebugShape(std::string shape, glm::mat4 modelmat)
     if(shape == "xyz")
         glClear(GL_DEPTH_BUFFER_BIT); // clear debpth buffer to make xyz in front of everything
     mDebugShapes[shape]->draw(modelmat);
+}
+
+void RenderWindow::drawDebugLine(glm::vec3 p1, glm::vec3 p2, glm::vec3 color)
+{
+    mDebugShapes["line"]->setline(p1,p2,color);
+    mDebugShapes["line"]->draw(glm::mat4(1.f));
 }
 
 void RenderWindow::log(std::string message, LogType logtype)

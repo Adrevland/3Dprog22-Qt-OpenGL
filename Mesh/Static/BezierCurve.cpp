@@ -1,17 +1,10 @@
 #include "BezierCurve.h"
 
-BezierCurve::BezierCurve(Shader* Shader, glm::mat4 modelMat)
-	:Mesh::Mesh(Shader,modelMat)
-{
-	/*mControlPoints.emplace_back(glm::vec3(20.f, 0.f, 3.f) + getLocation());
-	mControlPoints.emplace_back(glm::vec3(10.f, 5.f, 5.f) + getLocation());
-	mControlPoints.emplace_back(glm::vec3(15.f, 10.f, 10.f) + getLocation());
-	mControlPoints.emplace_back(glm::vec3(30.f, 10.f, 15.f) + getLocation());*/
+#include "Core/renderwindow.h"
 
-	mControlPoints.emplace_back(glm::vec3(4.f, 0.f, 0.f) + getLocation());
-	mControlPoints.emplace_back(glm::vec3(0.f, 0.f, 0.f) + getLocation());
-	mControlPoints.emplace_back(glm::vec3(0.f, 4.f, 0.f) + getLocation());
-	mControlPoints.emplace_back(glm::vec3(4.f, 4.f, 0.f) + getLocation());
+BezierCurve::BezierCurve(std::vector<glm::vec3> points)
+	:Mesh::Mesh(RENDERWINDOW->getShader("debug"), glm::mat4{1.f}),mControlPoints(points)
+{
 
 	mDrawMode = GL_LINE_STRIP; // override drawmode
 }
@@ -19,52 +12,37 @@ BezierCurve::BezierCurve(Shader* Shader, glm::mat4 modelMat)
 BezierCurve::~BezierCurve()
 {
 	mControlPoints.clear();
-	mVisualPoints.clear();
 }
 
 void BezierCurve::draw()
 {
 	Mesh::draw();
 
-	for (auto obj : mVisualPoints)
+	for(auto& points: mControlPoints)
 	{
-		obj->draw();
+		glm::mat4 mat = glm::translate(glm::mat4(1.f), points);
+		RENDERWINDOW->drawDebugShape("sphere", mat);
 	}
-	if(mVisualLines)mVisualLines->draw();
+	for (int i = 0; i < mControlPoints.size()-1; ++i)
+	{
+		RENDERWINDOW->drawDebugLine(mControlPoints[i], mControlPoints[i + 1], glm::vec3(1.f));
+	}
 }
 
 void BezierCurve::init()
 {
 	//visual lines
-	mModelMat = glm::mat4{ 1.f };
 
 	glm::vec3 color{125/255.f, 255/255.f , 50/255.f };
-	const float stepsize{ 3.f/4.f };
+	const float stepsize{ 0.0001f };
 	for (float t{0.f}; t < 1.f + stepsize/2.f; t += stepsize)
 	{
 		glm::vec3 tmp = calcBezier(t);
 		mVertices.emplace_back(Vertex(tmp.x, tmp.y, tmp.z, color.r, color.g, color.b));
 	}
 
-	Mesh ::init();
+	Mesh::init();
 
-	std::vector<Vertex> tmpVertices;
-	for (auto points : mControlPoints)
-	{
-		
-		mVisualPoints.emplace_back(new Mesh(mShaderProgram, 
-											glm::scale(glm::translate(glm::mat4(1.f), points),glm::vec3(0.5f,0.5f,0.5f)), 
-											"ObjFiles/Sphere.obj", "Textures/UvCheckers.jpg"
-											));
-
-		tmpVertices.emplace_back(Vertex(points.x, points.y, points.z));
-	}
-	mVisualLines = new Mesh(mShaderProgram, glm::mat4(1.f), tmpVertices, GL_LINE_STRIP);
-	for(auto obj: mVisualPoints)
-	{
-		obj->init();
-	}
-	if (mVisualLines)mVisualLines->init();
 }
 
 glm::vec3 BezierCurve::calcBezier(float t)

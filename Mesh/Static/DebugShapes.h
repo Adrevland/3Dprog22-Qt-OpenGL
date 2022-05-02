@@ -13,6 +13,7 @@ public:
 
 	void draw(glm::mat4 modelMat);
 	void init();
+	void setline(glm::vec3 p1, glm::vec3 p2, glm::vec3 color);
 
 private:
 

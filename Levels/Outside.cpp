@@ -76,7 +76,7 @@ void Outside::init()
 
 	//bezier
 	glm::mat4 bezloc = glm::translate(glm::mat4{ 1.f }, glm::vec3(10.f, 20.f, 5.f));
-	mMeshes.emplace_back(new BezierCurve(mShaderPrograms["color"], bezloc));
+	//mMeshes.emplace_back(new BezierCurve(mShaderPrograms["color"], bezloc));
 
 	//player
     mPlayer = new Player(mShaderPrograms["light"],  glm::mat4{ 1.f }, "../3Dprog22/ObjFiles/Kirby.obj", "../3Dprog22/Textures/kirby.jpg");

@@ -45,7 +45,7 @@ public:
     void setPlayerspeed(float speed);
     void toggleDebugLines();
     void drawDebugShape(std::string shape, glm::mat4 modelmat);
-
+    void drawDebugLine(glm::vec3 p1, glm::vec3 p2, glm::vec3 color);
    static RenderWindow* Get() { return sRenderWindow; }
    void log(std::string message, LogType logtype);
    

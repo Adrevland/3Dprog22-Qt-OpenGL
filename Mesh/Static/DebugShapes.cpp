@@ -65,3 +65,10 @@ void DebugShapes::init()
 	mProjectionLoc = glGetUniformLocation(RenderWindow::Get()->getShader("debug")->getProgram(), "projection");
 	
 }
+
+void DebugShapes::setline(glm::vec3 p1, glm::vec3 p2, glm::vec3 color)
+{
+	mVertices.clear();
+	mVertices.emplace_back(Vertex(p1.x,p1.y,p1.z,color.r,color.g,color.b));
+	mVertices.emplace_back(Vertex(p2.x, p2.y, p2.z, color.r, color.g, color.b));
+}

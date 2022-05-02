@@ -6,6 +6,7 @@
 #include "Mesh/Pawn/Player.h"
 
 
+class BezierCurve;
 class BillBoard;
 class SkyBox;
 class Heightmap;
@@ -82,6 +83,7 @@ protected:
 
 	OctTree* mOctTree;
 	Heightmap* mHeightmap{nullptr};
+	BezierCurve* mBezier{ nullptr };
 	//Shaders
 	std::unordered_map<std::string, Shader*> mShaderPrograms;
 

@@ -6,6 +6,7 @@
 #include "Physics/Shadows.h"
 #include "Mesh/Billboard/BillBoard.h"
 #include "glm/glm.hpp"
+#include "Mesh/Static/BezierCurve.h"
 
 EksamenLevel::EksamenLevel()
 	:Level(RENDERWINDOW)
@@ -21,6 +22,8 @@ void EksamenLevel::init()
 {
 	Level::init();
 
+	std::srand(std::time(nullptr)); // seed rand using current time
+
 	//biggest oct size
 	mOctTree = new OctTree(BoundingBox(glm::vec3(1.f), glm::vec3(1200.f), mShaderPrograms["color"]));
 
@@ -31,7 +34,17 @@ void EksamenLevel::init()
 	//heightmap
 	mHeightmap = new Heightmap(0.5f, "../3Dprog22/Assets/Heightmaps/Eksamenheightmap.png", "../3Dprog22/Assets/Heightmaps/Eksamentexture.png");
 	mHeightmap->init();
-	
+
+	//bezier
+	std::vector<glm::vec3> bezierpoints;
+	for (int i = 0; i < 16; ++i)
+	{
+		auto y = std::rand() % +mHeightmap->mHeight;
+		auto x = std::rand() % +mHeightmap->mWidth;
+		bezierpoints.emplace_back(glm::vec3(x, y, mHeightmap->getHeight(glm::vec3(x, y, 0)) + 50));
+	}
+	mBezier = new BezierCurve(bezierpoints);
+	mBezier->init();
 
 	//billboards sun //todo change to mesh sun
 	//mBillboards.emplace_back(new BillBoard("../3Dprog22/Assets/Textures/Quantamagazine-scaled.jpg"));
@@ -124,6 +137,7 @@ void EksamenLevel::render()
 
 	if (mSkyBox)mSkyBox->draw();
 
+	if (mBezier)mBezier->draw();
 
 	for (auto& mesh : mMeshes)
 	{
