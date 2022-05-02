@@ -53,12 +53,13 @@ public:
 	void scale(glm::vec3 scale);
 	void setLightLoc(glm::vec3 &newpos) { mLightpos = newpos; }
 	void setbDraw(bool b) { bDraw = b; }
+	void setModelMat(glm::mat4 mmat) { mModelMat = mmat; }
 
 	void drawDebugLines(bool b);
 
 	void setViewMode(int mode) { mViewMode = mode; }
 	int getViewMode() { return mViewMode; }
-
+	
 	void drawShadowShader();
 private:
 	const char* whitetexture{ "./Textures/white.jpg" };

@@ -61,6 +61,9 @@ void EksamenLevel::init()
 	mPlayer->setLocation(glm::vec3(600.f, 600.f, 49.f));
 	mPlayer->setHeightmap(mHeightmap);
 
+	//editor camera mesh
+	mCameraMesh = new Mesh(mShaderPrograms["lightshadow"], glm::scale(glm::mat4{ 1.f }, glm::vec3(0.5f)), "../3Dprog22/Assets/Meshes/Camera/camera.obj", "../3Dprog22/Assets/Meshes/Camera/camera.png");
+	mCameraMesh->init();
 	//make random trophys
 	std::vector<glm::vec3> TrophyPoints;
 	for (int i = 0; i < 10; ++i)
@@ -121,12 +124,7 @@ void EksamenLevel::render()
 
 	if (mSkyBox)mSkyBox->draw();
 
-	/*auto ploc = mPlayer->getLocation();
-	auto sloc = mSun->getLocation();
-	glm::vec3 fakespotlight{ ploc-sloc };
-	mHeightmap->setLightLoc(fakespotlight);*/
 
-	//glm::vec3 ploc = mPlayer->getLocation(); // get player location
 	for (auto& mesh : mMeshes)
 	{
 		mesh->draw();
@@ -135,19 +133,30 @@ void EksamenLevel::render()
 
 	if (mHeightmap)mHeightmap->draw();
 	if (mSun) mSun->draw();
+	//draw camera
+	if (CameraType == CAMERAMODE::Flying && mCameraMesh){
+		glm::mat4 rotationmat = {
+			{mCamera->PlayerCamRight,0.f},
+			{mCamera->PlayerCamForward,0.f},
+			{0.f,0.f,1.f,0.f},
+			{0.f,0.f,0.f,1.f},
+		};
 
+		glm::vec3 campos = mCamera->PlayerCamLocation;
+		glm::mat4 translation = glm::translate(glm::mat4(1.f), campos);
+		mCameraMesh->setModelMat(translation * rotationmat);
+
+		mCameraMesh->draw();
+	}
 	if (bDebugLines)
 	{
 		drawDebugshapes();
 		mOctTree->drawTree();
 	}
 
-	//draw light direction
-	auto lightdir = RENDERWINDOW->mLightDir;
-	glm::mat4 rotmat = glm::rotate(glm::mat4(1.f), glm::radians(daylightcyclespeed),glm::vec3(0.f,0.f,1.f));
-	lightdir = glm::vec3(rotmat * glm::vec4(lightdir, 1.f));
+	////draw light direction
 	
-	RENDERWINDOW->mLightDir = glm::normalize(lightdir);
+	
 	//LOG_HIGHLIGHT(Utils::vecToString(RENDERWINDOW->mLightDir));
 	/*glm::mat4 sphere1{1.f};
 	glm::mat4 sphere2{ 1.f };
@@ -158,25 +167,35 @@ void EksamenLevel::render()
 	/*glm::mat4 ma{ 1.f };
 	glm::scale(ma, glm::vec3(10));
 	RenderWindow::Get()->drawDebugShape("cube", mPlayer->getModelMat());*/
+	//todo pause game
+	if(CameraType == CAMERAMODE::Follow)
+	{
+		auto lightdir = RENDERWINDOW->mLightDir;
+		//rotate sun
+		glm::mat4 rotmat = glm::rotate(glm::mat4(1.f), glm::radians(daylightcyclespeed), glm::vec3(0.f, 0.f, 1.f));
+		lightdir = glm::vec3(rotmat * glm::vec4(lightdir, 1.f));
 
-	//set sun location
-	glm::vec3 newsunloc = mPlayer->getLocation() + (lightdir * (mCamera->getfar() / 2.f));
-	newsunloc.z = 100.f + mPlayer->getLocation().z; // set sun closer to ground
-	mSun->setLocation(newsunloc);
-	//mBillboards[0]->setlocation(newsunloc);
+		RENDERWINDOW->mLightDir = glm::normalize(lightdir);
+		//set sun location
+		glm::vec3 newsunloc = mPlayer->getLocation() + (lightdir * (mCamera->getfar() / 1.2f));
+		newsunloc.z = 100.f + mPlayer->getLocation().z; // set sun closer to ground
+		mSun->setLocation(newsunloc);
+		for (auto& mesh : mAllMeshes)
+		{
+			mesh->setLightLoc(lightdir);
+		}
+		mPlayer->tick(1.f);
+
+		mOctTree->checkCollision(mPlayer);
+	}
+
 	//draw transparancy last
 	for (auto& billboard : mBillboards)
 	{
 		billboard->draw();
 	}
-	for(auto& mesh: mAllMeshes)
-	{
-		mesh->setLightLoc(lightdir);
-	}
-	//todo pause scene
-	mPlayer->tick(1.f);
-
-	mOctTree->checkCollision(mPlayer);
+	
+	
 
 }
 

@@ -41,6 +41,12 @@ public:
 	float getfar() { return mZFar; }
 	float getnear() { return mZNear; }
 	float getfov() {return fov; }
+
+
+	glm::vec3 PlayerCamLocation{ 1.f };
+	glm::vec3 PlayerCamForward{ 1.f };
+	glm::vec3 PlayerCamRight{ 1.f };
+
 private:
 
 	
@@ -57,14 +63,14 @@ private:
 	glm::mat4 mView{ glm::lookAt(mLocation, mTarget, mUp)};
 
 	glm::vec3 mDistanceFromPlayer{  0.f,-20.f,20.f};
-	float mCamdistance{ 20.f };
+	float mCamdistance{ 40.f };
 
 	//Projection matrix
 	float mZNear{ 0.1f };
 	float mZFar{ 1000.f };
 
-	float myaw{ 0.f }, mpitch{0.f}, mroll{0.f};
-	float fov{ 90.0f };
+	float myaw{ -90.f }, mpitch{-10.f}, mroll{0.f};
+	float fov{ 45.0f };
 
 	glm::mat4 mProjection{ 1.f };
 

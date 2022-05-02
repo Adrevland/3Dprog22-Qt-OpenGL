@@ -49,7 +49,9 @@ void Level::render()
     {
         mCamera->setLocation(mPlayer->getLocation());
 	    mCamera->followObject(mPlayer);
-
+        mCamera->PlayerCamLocation = mCamera->getLocation();
+        mCamera->PlayerCamForward = mCamera->getFront();
+        mCamera->PlayerCamRight = mCamera->getRight();
     }
     if (CameraType == CAMERAMODE::Flying)
         editorCamera();
@@ -172,6 +174,17 @@ void Level::editorCamera()
     if (mKeyboard[Qt::Key_D])
         rightspeed += speed;
 
+    //up and down editor camera
+    if (mKeyboard[Qt::Key_E])
+    {
+	    mCamera->setLocation(mCamera->getLocation()+glm::vec3(0.f,0.f,1.f));
+    	mCamera->setTarget(mCamera->getLocation() + mCamera->getFront());
+    }
+    if (mKeyboard[Qt::Key_Q])
+    {
+	    mCamera->setLocation(mCamera->getLocation() - glm::vec3(0.f, 0.f, 1.f));
+    	mCamera->setTarget(mCamera->getLocation() + mCamera->getFront());
+    }
     //calc direction
     glm::vec3 rightvector = mCamera->getRight() * rightspeed;
     glm::vec3 frontvector = mCamera->getFront() * forwardspeed;
@@ -278,24 +291,13 @@ void Level::mouseMoveEvent(QMouseEvent* event)
     oldmousex = mouseX;
     oldmousey = mouseY;
 
-	if(CameraType == CAMERAMODE::Follow) {
+    //to rotate camera around player with mouse
+	if(CameraType == CAMERAMODE::Follow && false) {
 		//yeet rotation from Sten
     	static float currentRotationX{};
     	static float currentRotationY{ -0.2f };
     	if (mMouse[Qt::RightButton])
     	{
-    		////QCursor::setPos(oldmousex, oldmousey); // locks mouse in place
-    		//currentRotationX += mouseDX / 200.f;
-    		//currentRotationY += mouseDY / 200.f;
-    		//currentRotationY = std::clamp<float>(currentRotationY, -glm::half_pi<float>() + 0.2f, glm::half_pi<float>() - 1.6f);
-
-    		//// Use matrix to rotate from mouse input.
-    		//glm::mat4 camPos(1.f);
-    		//camPos = glm::rotate(camPos, currentRotationX, { 0.f, 0.f, 1.f });
-    		//camPos = glm::rotate(camPos, currentRotationY, { 1.f, 0.f, 0.f });
-    		//glm::vec3 camPosV = camPos * glm::vec4{ 0.f, 0.f, 0.f, 1.f };
-
-
             const float sensitivity = 0.1f;
             mouseDX *= sensitivity;
             mouseDY *= sensitivity;
@@ -303,14 +305,6 @@ void Level::mouseMoveEvent(QMouseEvent* event)
 
             mCamera->rotate(mouseDX, mouseDY);
 
-    		// Move the rotated camera to the player.
-    		/*glm::vec3 newarm = camPosV + mCamera->getSpringarm();
-        
-    		mCamera->setSpringArm(newarm);*/
-    		//mCamera->setTarget(mCamera->getLocation());
-    		/*std::string camlocation = std::to_string(mCamera->getLocation().x) +" " + std::to_string(mCamera->getLocation().y) +" " + std::to_string(mCamera->getLocation().z);
-    		if (mLogger)mLogger->logText(camlocation, LogType::HIGHLIGHT);
-    		else mLogger = Logger::getInstance();*/
     	}
 	}
     else if(CameraType == CAMERAMODE::Flying)

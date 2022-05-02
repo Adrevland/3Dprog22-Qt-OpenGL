@@ -64,6 +64,7 @@ public:
 
 	Shadows* getShadowmap() { return mShadowMap; }
 
+	
 protected:
 	RenderWindow* mRenderWindow{nullptr};
 	
@@ -73,6 +74,8 @@ protected:
 	//meshes
 	Player* mPlayer; //want player accesable outside of vector
 	Mesh* mSun{nullptr}; // because it is outside oct
+	Mesh* mCameraMesh{ nullptr };
+
 	std::vector <Mesh*> mMeshes;
 	std::vector <Mesh*> mAllMeshes;
 	std::vector<BillBoard*> mBillboards;

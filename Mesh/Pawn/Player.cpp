@@ -91,7 +91,8 @@ void Player::tick(float deltatime)
 
 		glm::vec3 lastpos = getLocation();
 		mModelMat = glm::mat4{ 1.f };
-		setLocation(lastpos + movevector*speed);
+		//setLocation(lastpos + movevector*speed);
+		setLocation(lastpos + (mCamera->getFront()*forwardspeed) * speed);
 		glm::mat4 translation = glm::translate(mModelMat, movevector*speed);
 		mModelMat = translation*rotationmat;
 		move();
