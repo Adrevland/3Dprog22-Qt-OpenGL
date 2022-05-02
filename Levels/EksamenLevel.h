@@ -1,5 +1,7 @@
 #pragma once
 #include "Level.h"
+class BomberNpc;
+
 class EksamenLevel :
     public Level
 {
@@ -19,5 +21,7 @@ public:
 
 protected:
     float daylightcyclespeed{ 0.1f };
+
+    BomberNpc* npcBomber{ nullptr };
 };
 

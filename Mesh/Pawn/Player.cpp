@@ -36,80 +36,89 @@ bool Player::onBeginOverlap(CollisionPrimitive* primitive)
 
 void Player::tick(float deltatime)
 {
+	//movement
+	if(!bstunned){
+		forwardspeed = 0.f;
+		rightspeed = 0.f;
+		float upspeed{ 0.f };
 
-	forwardspeed = 0.f;
-	rightspeed = 0.f;
-	float upspeed{ 0.f };
 
-
-	if (mkeybInput[Qt::Key_W])
-		forwardspeed += speed;
-	if (mkeybInput[Qt::Key_S])
-		forwardspeed -= speed;
-	if (mkeybInput[Qt::Key_A])
-		rightspeed -= speed;
-	if (mkeybInput[Qt::Key_D])
-		rightspeed += speed;
-	if (mkeybInput[Qt::Key_Space])
-	{
-		upspeed += speed;
-	}
-	if (mkeybInput[Qt::Key_Shift])
-	{
-		upspeed -= speed;
-	}
-	if(mkeybInput[Qt::Key_1])
-	{
-		//log location
-		auto loc = getLocation();
-		std::string playerloc = std::to_string(loc.x) + " " + std::to_string(loc.y) + " " + std::to_string(loc.z);
-		if (mLogger)mLogger->logText(playerloc, LogType::HIGHLIGHT);
-	}
-	
-	rightspeed = std::clamp(rightspeed, -speed, speed);
-	forwardspeed = std::clamp(forwardspeed, -speed, speed);
-
-	//calc direction
-	//glm::vec3 rightvector = mCamera->getRight() * rightspeed;
-	float rotateright = rightspeed;
-	glm::vec3 frontvector = mCamera->getFront() * forwardspeed;
-	frontvector.z = 0.f;
-	/*frontvector *= -1.f;*/
-	//glm::vec3 movevector = glm::normalize(frontvector + rightvector);
-	glm::vec3 movevector = glm::normalize(frontvector);
-	glm::vec3 velocity = -movevector;
-	velocity = -glm::normalize(velocity);
-	mCamera->rotate(-rotateright*2, 0);
-	if(!glm::any(glm::isnan(velocity)))
-	{
-		glm::vec3 right = glm::cross(velocity , glm::vec3(0.f, 0.f, 1.f) );
-		//glm::vec3 right = mCamera->getRight();
-		right.z = 0.f;
-		right = glm::normalize(right);
-		glm::vec3 front = mCamera->getFront();
-		front.z = 0.f;
-		front = glm::normalize(front);
-		glm::mat4 rotationmat = {
-			{right,0.f},
-			{velocity,0.f},
-			{0.f,0.f,1.f,0.f},
-			{0.f,0.f,0.f,1.f},
-		};
-		//glm::mat4 rotationmat = glm::lookAt(mCamera->getLocation(), mCamera->getFront(), glm::vec3(0.f, 0.f, 1.f));
-	//	glm::vec3 lastpos = getLocation();
-	//	mModelMat = glm::mat4{ 1.f };
-	//	//setLocation(lastpos + movevector*speed);
-	//	setLocation(lastpos + (mCamera->getFront()*forwardspeed) * speed);
-	//	
+		if (mkeybInput[Qt::Key_W])
+			forwardspeed += speed;
+		if (mkeybInput[Qt::Key_S])
+			forwardspeed -= speed;
+		if (mkeybInput[Qt::Key_A])
+			rightspeed -= speed;
+		if (mkeybInput[Qt::Key_D])
+			rightspeed += speed;
+		if (mkeybInput[Qt::Key_Space])
+		{
+			upspeed += speed;
+		}
+		if (mkeybInput[Qt::Key_Shift])
+		{
+			upspeed -= speed;
+		}
+		if(mkeybInput[Qt::Key_1])
+		{
+			//log location
+			auto loc = getLocation();
+			std::string playerloc = std::to_string(loc.x) + " " + std::to_string(loc.y) + " " + std::to_string(loc.z);
+			if (mLogger)mLogger->logText(playerloc, LogType::HIGHLIGHT);
+		}
 		
-		glm::mat4 translation = glm::translate(mModelMat, velocity * speed);
-		mModelMat = translation;// *rotationmat;
-		move();
+		rightspeed = std::clamp(rightspeed, -speed, speed);
+		forwardspeed = std::clamp(forwardspeed, -speed, speed);
 
-		/*mModelMat = rotationmat;*/
-		
+		//calc direction
+		//glm::vec3 rightvector = mCamera->getRight() * rightspeed;
+		float rotateright = rightspeed;
+		glm::vec3 frontvector = mCamera->getFront() * forwardspeed;
+		frontvector.z = 0.f;
+		/*frontvector *= -1.f;*/
+		//glm::vec3 movevector = glm::normalize(frontvector + rightvector);
+		glm::vec3 movevector = glm::normalize(frontvector);
+		glm::vec3 velocity = -movevector;
+		velocity = -glm::normalize(velocity);
+		mCamera->rotate(-rotateright*2, 0);
+		if(!glm::any(glm::isnan(velocity)))
+		{
+			glm::vec3 right = glm::cross(velocity , glm::vec3(0.f, 0.f, 1.f) );
+			//glm::vec3 right = mCamera->getRight();
+			right.z = 0.f;
+			right = glm::normalize(right);
+			glm::vec3 front = mCamera->getFront();
+			front.z = 0.f;
+			front = glm::normalize(front);
+			glm::mat4 rotationmat = {
+				{right,0.f},
+				{velocity,0.f},
+				{0.f,0.f,1.f,0.f},
+				{0.f,0.f,0.f,1.f},
+			};
+			//glm::mat4 rotationmat = glm::lookAt(mCamera->getLocation(), mCamera->getFront(), glm::vec3(0.f, 0.f, 1.f));
+			//	glm::vec3 lastpos = getLocation();
+			//	mModelMat = glm::mat4{ 1.f };
+			//	//setLocation(lastpos + movevector*speed);
+			//	setLocation(lastpos + (mCamera->getFront()*forwardspeed) * speed);
+			//	
+			
+			glm::mat4 translation = glm::translate(mModelMat, velocity * speed);
+			mModelMat = translation;// *rotationmat;
+			move();
+
+			/*mModelMat = rotationmat;*/
+			
+		}
 	}
+	auto currenttime = std::chrono::high_resolution_clock::now();
+	auto secondsStunned = std::chrono::duration<float>(currenttime - lasttime).count();
 
+	if(secondsStunned >= 2)
+	{
+		bstunned = false;
+		lasttime = std::chrono::high_resolution_clock::now();
+	}
 	//move player
 	//if(movevector != glm::vec3(0.f))
 	//{

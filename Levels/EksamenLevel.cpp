@@ -7,6 +7,7 @@
 #include "Mesh/Billboard/BillBoard.h"
 #include "glm/glm.hpp"
 #include "Mesh/Static/BezierCurve.h"
+#include "Mesh/Pawn/BomberNpc.h"
 
 EksamenLevel::EksamenLevel()
 	:Level(RENDERWINDOW)
@@ -74,6 +75,10 @@ void EksamenLevel::init()
 	mPlayer->setLocation(glm::vec3(600.f, 600.f, 49.f));
 	mPlayer->setHeightmap(mHeightmap);
 
+	//bomber npc
+	npcBomber = new BomberNpc("../3Dprog22/ObjFiles/Kirby.obj", "../3Dprog22/Textures/kirby.jpg", mBezier);
+	npcBomber->init();
+
 	//editor camera mesh
 	mCameraMesh = new Mesh(mShaderPrograms["lightshadow"], glm::scale(glm::mat4{ 1.f }, glm::vec3(0.5f)), "../3Dprog22/Assets/Meshes/Camera/camera.obj", "../3Dprog22/Assets/Meshes/Camera/camera.png");
 	mCameraMesh->init();
@@ -114,6 +119,7 @@ void EksamenLevel::init()
 	//all meshes
 	mAllMeshes.emplace_back(mHeightmap);
 	mAllMeshes.emplace_back(mPlayer);
+	mAllMeshes.emplace_back(npcBomber);
 	//init and insert to oct tree
 	for (auto& obj : mMeshes)
 	{
@@ -138,6 +144,7 @@ void EksamenLevel::render()
 	if (mSkyBox)mSkyBox->draw();
 
 	if (mBezier)mBezier->draw();
+	if (npcBomber)npcBomber->draw();
 
 	for (auto& mesh : mMeshes)
 	{
@@ -201,6 +208,7 @@ void EksamenLevel::render()
 			mesh->setLightLoc(lightdir);
 		}
 		mPlayer->tick(1.f);
+		npcBomber->tick();
 
 		mOctTree->checkCollision(mPlayer);
 	}

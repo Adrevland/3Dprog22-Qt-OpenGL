@@ -188,6 +188,9 @@
     <ClCompile Include="Levels\EksamenLevel.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="Mesh\Pawn\BomberNpc.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mesh\Static\BezierCurve.h">
@@ -326,6 +329,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="Levels\EksamenLevel.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\Pawn\BomberNpc.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
