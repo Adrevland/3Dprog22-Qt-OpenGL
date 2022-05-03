@@ -215,8 +215,14 @@ void RenderWindow::showWireFrame(bool show)
 
 void RenderWindow::changeViewMode()
 {
-    //todo send data to shader, change between light and show normals
-    mLevels[mActiveLevel]->setViewMode();
+    ////todo send data to shader, change between light and show normals
+    //mLevels[mActiveLevel]->setViewMode();
+    //reset level
+    LOG_WARNING("Reloading level, pls be patient!");
+    auto tmp = new EksamenLevel();
+    tmp->init();
+    delete mLevels[mActiveLevel];
+    mLevels[mActiveLevel] = tmp;
 
 }
 

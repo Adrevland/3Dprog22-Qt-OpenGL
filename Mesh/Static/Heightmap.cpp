@@ -95,11 +95,11 @@ void Heightmap::readmap()
 
 	//texture loading
 	int width, height, nrChannels;
-
+	stbi_set_flip_vertically_on_load(true);
 	unsigned char* data = stbi_load(mMapstr, &width, &height, &nrChannels, 1);
 	if (data) {
 		//todo read a height map
-		//stbi_set_flip_vertically_on_load(true);
+		
 		//const glm::vec3 color(1.f, 1.f, 1.f);
 
 		//save variables for barycentric
@@ -183,7 +183,6 @@ void Heightmap::readmap()
 		
 			std::string logmsg = "Height map got " + std::to_string(nrChannels) + " channels";
 			if (mLogger) mLogger->logText(logmsg, LogType::HIGHLIGHT);
-		
 		stbi_image_free(data);      //free image memory after bitmap generation
 	}
 	else {

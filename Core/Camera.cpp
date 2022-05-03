@@ -45,24 +45,26 @@ void Camera::followObject(Mesh* obj)
 	glm::vec3 objloc =  obj->getLocation();
 	
 	mLocation = objloc - mFront*mCamdistance;
-	if (mLocation.z <= RENDERWINDOW->getLevel()->getHeightmap()->getHeight(mLocation)+4.f)
+	if(mLocation.x > 10 && mLocation.y > 10)
 	{
+		if (mLocation.z <= RENDERWINDOW->getLevel()->getHeightmap()->getHeight(mLocation)+4.f)
+		{
 
-				mpitch -= 0.5f;
-				mTarget = objloc;
+			mpitch -= 0.5f;
+			mTarget = objloc;
 
-				mDirection.x = cos(glm::radians(myaw)) * cos(glm::radians(mpitch));
-				mDirection.y = sin(glm::radians(myaw)) * cos(glm::radians(mpitch));
-				mDirection.z = sin(glm::radians(mpitch));
+			mDirection.x = cos(glm::radians(myaw)) * cos(glm::radians(mpitch));
+			mDirection.y = sin(glm::radians(myaw)) * cos(glm::radians(mpitch));
+			mDirection.z = sin(glm::radians(mpitch));
 
-				mFront = glm::normalize(mDirection);
-				mTarget = mLocation + mFront;
-				updateView();
-				updateProjection();
+			mFront = glm::normalize(mDirection);
+			mTarget = mLocation + mFront;
+			updateView();
+			updateProjection();
 
-	}
-	else if (mpitch < ppitch && mLocation.z >= RENDERWINDOW->getLevel()->getHeightmap()->getHeight(mLocation) + 10.f)
-	{
+		}
+		else if (mpitch < ppitch && mLocation.z >= RENDERWINDOW->getLevel()->getHeightmap()->getHeight(mLocation) + 10.f)
+		{
 
 			mpitch += 0.1f;
 			mTarget = objloc;
@@ -75,6 +77,14 @@ void Camera::followObject(Mesh* obj)
 			mTarget = mLocation + mFront;
 			updateView();
 			updateProjection();
+
+		}
+		else
+		{
+			mTarget = objloc;
+
+			updateView();
+		}
 
 	}
 	else

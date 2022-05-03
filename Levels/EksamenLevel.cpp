@@ -53,8 +53,8 @@ void EksamenLevel::init()
 	std::vector<glm::vec3> bezierpoints;
 	for (int i = 0; i < 16; ++i)
 	{
-		auto y = std::rand() % +mHeightmap->mHeight;
-		auto x = std::rand() % +mHeightmap->mWidth;
+		auto y = std::rand() % +(mHeightmap->mHeight-50) + 50;
+		auto x = std::rand() % +(mHeightmap->mWidth-50) +50;
 		bezierpoints.emplace_back(glm::vec3(x, y, mHeightmap->getHeight(glm::vec3(x, y, 0)) + 50));
 	}
 	mBezier = new BezierCurve(bezierpoints);
@@ -105,8 +105,8 @@ void EksamenLevel::init()
 	std::vector<glm::vec3> TrophyPoints;
 	for (int i = 0; i < 20; ++i)
 	{
-		auto y = std::rand() % +mHeightmap->mHeight;
-		auto x = std::rand() % +mHeightmap->mWidth;
+		auto y = std::rand() % +(mHeightmap->mHeight - 50) + 50;
+		auto x = std::rand() % +(mHeightmap->mWidth - 50) + 50;
 		TrophyPoints.emplace_back(glm::vec3(x, y, mHeightmap->getHeight(glm::vec3(x, y, 0)) + 5));
 	}
 
@@ -136,11 +136,11 @@ void EksamenLevel::init()
 	//create fences
 	for (int i = 0; i < 20; ++i)
 	{
-		float y = std::rand() % +mHeightmap->mHeight;
-		float x = std::rand() % +mHeightmap->mWidth;
-		float scaleX = std::rand() % +40;
-		float scaleY = std::rand() % +40;
-		float scalez = std::rand() % +40;
+		float y = std::rand() % +(mHeightmap->mHeight - 50) + 50;
+		float x = std::rand() % +(mHeightmap->mWidth - 50) + 50;
+		float scaleX = std::rand() % +30;
+		float scaleY = std::rand() % +30;
+		float scalez = std::rand() % +30;
 
 		glm::mat4 mat = glm::translate(glm::mat4{ 1.f }, glm::vec3(x, y, mHeightmap->getHeight(glm::vec3(x, y, 0)) + scalez));
 		mat = glm::scale(mat, glm::vec3(scaleX, scaleY, scalez));

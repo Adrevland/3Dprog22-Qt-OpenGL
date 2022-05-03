@@ -19,10 +19,10 @@ Texture::Texture(const char* FilePath)
     // set texture filtering parameters
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
+    stbi_set_flip_vertically_on_load(true);
     unsigned char* data = stbi_load(FilePath, &width, &height, &nrChannels, 0);
     if (data) {
-        stbi_set_flip_vertically_on_load(true);
+        
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
         mHeight = height;
@@ -32,7 +32,6 @@ Texture::Texture(const char* FilePath)
          if(mLogger) mLogger->logText("Failed loading image texture", LogType::REALERROR);
     }
     glActiveTexture(GL_TEXTURE0); // activate the texture unit first before binding texture
-
 
     stbi_image_free(data);      //free image memory after bitmap generation
 }

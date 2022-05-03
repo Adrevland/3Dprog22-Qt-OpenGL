@@ -78,6 +78,7 @@ void MainWindow::init()
     Logger::getInstance()->setMainWindow(this);
 
     ui->Togglegrid->setText("Show DebugLines");
+    ui->ChangeViewMode->setText("reset");
 }
 
 //Example of a slot called from the button on the top of the program.
@@ -126,6 +127,7 @@ void MainWindow::on_WireFrame_toggled(bool checked)
 
 void MainWindow::on_ChangeViewMode_pressed()
 {
+    
     mRenderWindow->changeViewMode();
 }
 
