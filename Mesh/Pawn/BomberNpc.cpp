@@ -27,7 +27,7 @@ BomberNpc::~BomberNpc()
 
 void BomberNpc::init()
 {
-	spawner = new Spawner(this, "../3Dprog22/ObjFiles/Kirby.obj", "../3Dprog22/Textures/kirby.jpg",RENDERWINDOW->getLevel()->getHeightmap());
+	spawner = new Spawner(this, "../3Dprog22/Assets/Meshes/Bomb/Bomb.obj", "../3Dprog22/Assets/Meshes/Bomb/bomb.jpg",RENDERWINDOW->getLevel()->getHeightmap());
 	mModelMat = glm::scale(mModelMat, glm::vec3(10.f));
 	lasttime = std::chrono::high_resolution_clock::now();
 	Mesh::init();

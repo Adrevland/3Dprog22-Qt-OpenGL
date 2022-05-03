@@ -4,7 +4,7 @@
 #include "Physics/Spawner.h"
 
 Bomb::Bomb(const char* obj, const char* texture, Heightmap* hmap, glm::vec3 spawnlocation, Spawner* spawn)
-	:Mesh(RENDERWINDOW->getShader("lightshadow"),glm::mat4{1.f},obj,texture),mHeightmap(hmap),owner(spawn)
+	:Mesh(RENDERWINDOW->getShader("Texture"),glm::mat4{1.f},obj,texture),mHeightmap(hmap),owner(spawn)
 {
 	mModelMat = glm::translate(mModelMat, spawnlocation);
 }

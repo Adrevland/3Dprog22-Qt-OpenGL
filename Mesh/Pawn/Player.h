@@ -30,7 +30,7 @@ public:
 private:
 	std::unordered_map<int, bool> mkeybInput;
 	bool forwardillegal{ false };
-
+	glm::vec3 lastVelocity{ 0.f };
 	float forwardspeed{ 0 };
 	float rightspeed{ 0 };
 

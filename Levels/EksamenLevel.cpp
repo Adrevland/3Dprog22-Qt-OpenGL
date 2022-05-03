@@ -89,7 +89,7 @@ void EksamenLevel::init()
 	mPlayer->setHeightmap(mHeightmap);
 
 	//bomber npc
-	npcBomber = new BomberNpc("../3Dprog22/ObjFiles/Kirby.obj", "../3Dprog22/Textures/kirby.jpg", mBezier);
+	npcBomber = new BomberNpc("../3Dprog22/Assets/Meshes/Ufo/ufo.obj", "../3Dprog22/Assets/Meshes/Ufo/Ufo.jpg", mBezier);
 	npcBomber->init();
 
 	//npc
@@ -102,8 +102,9 @@ void EksamenLevel::init()
 	mCameraMesh->init();
 
 	//make random trophys locations
+	//spawning 30 trophys 15 of each beacause of big map. first to find 10 wins
 	std::vector<glm::vec3> TrophyPoints;
-	for (int i = 0; i < 20; ++i)
+	for (int i = 0; i < 30; ++i)
 	{
 		auto y = std::rand() % +(mHeightmap->mHeight - 50) + 50;
 		auto x = std::rand() % +(mHeightmap->mWidth - 50) + 50;
@@ -134,19 +135,18 @@ void EksamenLevel::init()
 
 	}
 	//create fences
-	for (int i = 0; i < 20; ++i)
+	for (int i = 0; i < 10; ++i)
 	{
 		float y = std::rand() % +(mHeightmap->mHeight - 50) + 50;
 		float x = std::rand() % +(mHeightmap->mWidth - 50) + 50;
-		float scaleX = std::rand() % +30;
-		float scaleY = std::rand() % +30;
-		float scalez = std::rand() % +30;
+		float scaleXY = std::rand() % 1+30;
+		float scalez = std::rand() % 1+30;
 
-		glm::mat4 mat = glm::translate(glm::mat4{ 1.f }, glm::vec3(x, y, mHeightmap->getHeight(glm::vec3(x, y, 0)) + scalez));
-		mat = glm::scale(mat, glm::vec3(scaleX, scaleY, scalez));
+		glm::mat4 mat = glm::translate(glm::mat4{ 1.f }, glm::vec3(x, y, mHeightmap->getHeight(glm::vec3(x, y, 0))+scalez));
+		mat = glm::scale(mat, glm::vec3(scaleXY, scaleXY, scalez));
 		//todo change from kirby mesh
-		auto fence = new Fence(mShaderPrograms["lightshadow"], mat, "../3Dprog22/ObjFiles/Kirby.obj", "../3Dprog22/Textures/kirby.jpg");
-		fence->setViewMode(2);
+		auto fence = new Fence(mShaderPrograms["lightshadow"], mat, "../3Dprog22/Assets/Meshes/Fence/ControlTower.obj", "../3Dprog22/Textures/white.jpg");
+		//fence->setViewMode(2);
 		fences.emplace_back(fence);
 	}
 

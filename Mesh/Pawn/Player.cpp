@@ -83,6 +83,7 @@ void Player::tick(float deltatime)
 		mCamera->rotate(-rotateright*2, 0);
 		if(!glm::any(glm::isnan(velocity)))
 		{
+			lastVelocity = velocity;
 			glm::vec3 right = glm::cross(velocity , glm::vec3(0.f, 0.f, 1.f) );
 			//glm::vec3 right = mCamera->getRight();
 			right.z = 0.f;
@@ -138,7 +139,7 @@ void Player::sendKeyboard(std::unordered_map<int, bool> &keyInput)
 
 void Player::pushback(glm::vec3 pos)
 {
-	auto newloc = pos - mCamera->getFront();
+	auto newloc = pos - lastVelocity;
 	setLocation(newloc);
 
 	move();// set z
