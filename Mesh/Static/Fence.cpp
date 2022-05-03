@@ -35,9 +35,11 @@ bool Fence::onBeginOverlap(CollisionPrimitive* primitive)
 			return true;
 		}
 		//npc
-		if (RENDERWINDOW->getLevel()->getNpc()->getcollision())
+		RENDERWINDOW->getLevel()->getNpc()->handleCollision(primitive);
+		if (primitive == RENDERWINDOW->getLevel()->getNpc()->getcollision())
 		{
-			//todo push npc
+			
+			RENDERWINDOW->getLevel()->getNpc()->pushback(RENDERWINDOW->getLevel()->getNpc()->getLocation());
 
 			return true;
 		}

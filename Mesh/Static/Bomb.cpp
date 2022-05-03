@@ -63,6 +63,7 @@ bool Bomb::onBeginOverlap(CollisionPrimitive* primitive)
 		}
 		if (RENDERWINDOW->getLevel()->getNpc()->getcollision() == primitive)
 		{
+			LOG_HIGHLIGHT("Npc Stunned");
 			RENDERWINDOW->getLevel()->getNpc()->stun();
 		}
 		destroy();

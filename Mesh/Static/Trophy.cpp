@@ -35,9 +35,11 @@ bool Trophy::onBeginOverlap(CollisionPrimitive* primitive)
 			return true;
 		}
 		//npc
-		if (trophytype == TROPHYTYPE::Blue && RENDERWINDOW->getLevel()->getNpc()->getcollision())
+		if (trophytype == TROPHYTYPE::Blue && primitive == RENDERWINDOW->getLevel()->getNpc()->getcollision())
 		{
 			RENDERWINDOW->getLevel()->NpcScore += 1;
+			auto tmp = primitive;
+			auto tmp2 = RENDERWINDOW->getLevel()->getNpc()->getcollision();
 			LOG_HIGHLIGHT("Npc SCORE : " + std::to_string(RENDERWINDOW->getLevel()->NpcScore));
 			destroy();
 			return true;

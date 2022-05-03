@@ -95,11 +95,28 @@ void EksamenLevel::init()
 	//npc
 	mNpc = new Npc(mShaderPrograms["lightshadow"], glm::mat4{ 1.f }, "../3Dprog22/ObjFiles/Kirby.obj", "../3Dprog22/Textures/kirby.jpg");
 	mNpc->init();
+	mNpc->scale(glm::vec3(2.f));
 	mNpc->setLocation(glm::vec3(650.f, 650.f, 49.f));
 	mNpc->setHeightmap(mHeightmap);
 	//editor camera mesh
 	mCameraMesh = new Mesh(mShaderPrograms["lightshadow"], glm::scale(glm::mat4{ 1.f }, glm::vec3(0.5f)), "../3Dprog22/Assets/Meshes/Camera/camera.obj", "../3Dprog22/Assets/Meshes/Camera/camera.png");
 	mCameraMesh->init();
+
+	//create fences
+	for (int i = 0; i < 20; ++i)
+	{
+		float y = std::rand() % +(mHeightmap->mHeight - 50) + 50;
+		float x = std::rand() % +(mHeightmap->mWidth - 50) + 50;
+		float scaleXY = std::rand() % 30+1;
+		float scalez = std::rand() % 30+1;
+
+		glm::mat4 mat = glm::translate(glm::mat4{ 1.f }, glm::vec3(x, y, mHeightmap->getHeight(glm::vec3(x, y, 0)) + scalez));
+		mat = glm::scale(mat, glm::vec3(scaleXY, scaleXY, scalez));
+		//todo change from kirby mesh
+		auto fence = new Fence(mShaderPrograms["lightshadow"], mat, "../3Dprog22/Assets/Meshes/Fence/ControlTower.obj", "../3Dprog22/Textures/white.jpg");
+		//fence->setViewMode(2);
+		fences.emplace_back(fence);
+	}
 
 	//make random trophys locations
 	//spawning 30 trophys 15 of each beacause of big map. first to find 10 wins
@@ -134,21 +151,7 @@ void EksamenLevel::init()
 		}
 
 	}
-	//create fences
-	for (int i = 0; i < 10; ++i)
-	{
-		float y = std::rand() % +(mHeightmap->mHeight - 50) + 50;
-		float x = std::rand() % +(mHeightmap->mWidth - 50) + 50;
-		float scaleXY = std::rand() % 1+30;
-		float scalez = std::rand() % 1+30;
-
-		glm::mat4 mat = glm::translate(glm::mat4{ 1.f }, glm::vec3(x, y, mHeightmap->getHeight(glm::vec3(x, y, 0))+scalez));
-		mat = glm::scale(mat, glm::vec3(scaleXY, scaleXY, scalez));
-		//todo change from kirby mesh
-		auto fence = new Fence(mShaderPrograms["lightshadow"], mat, "../3Dprog22/Assets/Meshes/Fence/ControlTower.obj", "../3Dprog22/Textures/white.jpg");
-		//fence->setViewMode(2);
-		fences.emplace_back(fence);
-	}
+	
 
 
 	//skybox
@@ -244,6 +247,7 @@ void EksamenLevel::render()
 		{
 			mesh->drawDebugLines(bDebugLines);
 		}
+		mNpc->drawDebugLines(bDebugLines);
 	}
 
 	////draw light direction
@@ -285,6 +289,7 @@ void EksamenLevel::render()
 			obj->checkOverlap(mNpc);
 		}
 		mOctTree->checkCollision(mPlayer);
+		mOctTree->checkCollision(mNpc);
 		if (npcBomber)npcBomber->checkoverlap(mPlayer);
 		if (npcBomber)npcBomber->checkoverlap(mNpc);
 	}

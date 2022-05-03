@@ -55,7 +55,7 @@ public:
 	void setbDraw(bool b) { bDraw = b; }
 	void setModelMat(glm::mat4 mmat) { mModelMat = mmat; }
 
-	void drawDebugLines(bool b);
+	virtual void drawDebugLines(bool b);
 
 	void setViewMode(int mode) { mViewMode = mode; }
 	int getViewMode() { return mViewMode; }
@@ -130,5 +130,6 @@ protected:
 	Logger* mLogger{ nullptr };
 
 	bool stunned{ false };
+	std::vector<CollisionPrimitive*> collisionSensors;
 };
 

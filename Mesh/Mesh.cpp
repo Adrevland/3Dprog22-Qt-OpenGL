@@ -184,6 +184,13 @@ void Mesh::checkOverlap(Mesh* mesh)
 {
 	if(mCollisionPrimitive)
 		onBeginOverlap(mesh->mCollisionPrimitive);
+	if(!mesh->collisionSensors.empty())
+	{
+		for(auto& prim: mesh->collisionSensors)
+		{
+			onBeginOverlap(prim);
+		}
+	}
 }
 
 void Mesh::drawShadowShader()
