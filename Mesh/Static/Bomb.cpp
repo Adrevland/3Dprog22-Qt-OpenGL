@@ -4,7 +4,7 @@
 #include "Physics/Spawner.h"
 
 Bomb::Bomb(const char* obj, const char* texture, Heightmap* hmap, glm::vec3 spawnlocation, Spawner* spawn)
-	:Mesh(RENDERWINDOW->getShader("Texture"),glm::mat4{1.f},obj,texture),mHeightmap(hmap),owner(spawn)
+	:Mesh(RENDERWINDOW->getShader("lightshadow"),glm::mat4{1.f},obj,texture),mHeightmap(hmap),owner(spawn)
 {
 	mModelMat = glm::translate(mModelMat, spawnlocation);
 }
@@ -17,6 +17,7 @@ void Bomb::init()
 {
 	collision = new BSphere(getLocation(),Utils::radiusMesh(this));
 	mCollisionPrimitive = collision;
+	mModelMat = glm::scale(mModelMat, glm::vec3(5.f));
 	Mesh::init();
 }
 
@@ -28,7 +29,7 @@ void Bomb::draw()
 
 void Bomb::tick()
 {
-	if(!bexploded)setLocation(getLocation() - (mCamera->getWorldup()*0.1f));
+	if(!bexploded)setLocation(getLocation() - (mCamera->getWorldup()*0.3f));
 	collision->Center = getLocation();
 	if(getLocation().z <= mHeightmap->getHeight(getLocation()))
 	{
@@ -39,9 +40,9 @@ void Bomb::tick()
 
 void Bomb::explode()
 {
-	collision->radius += 0.1f;
+	collision->radius += 0.2f;
 	//mModelMat = glm::scale(mModelMat, glm::vec3(2.f));
-	if (collision->radius >= 20.f)
+	if (collision->radius >= 50.f)
 	{
 		//LOG_HIGHLIGHT("Bomb deleted");
 		destroy();

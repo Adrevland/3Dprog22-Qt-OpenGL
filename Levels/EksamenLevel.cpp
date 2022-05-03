@@ -103,12 +103,12 @@ void EksamenLevel::init()
 	mCameraMesh->init();
 
 	//create fences
-	for (int i = 0; i < 20; ++i)
+	for (int i = 0; i < 10; ++i)
 	{
 		float y = std::rand() % +(mHeightmap->mHeight - 50) + 50;
 		float x = std::rand() % +(mHeightmap->mWidth - 50) + 50;
-		float scaleXY = std::rand() % 30+1;
-		float scalez = std::rand() % 30+1;
+		float scaleXY = std::rand() % 30+3;
+		float scalez = std::rand() % 30+10;
 
 		glm::mat4 mat = glm::translate(glm::mat4{ 1.f }, glm::vec3(x, y, mHeightmap->getHeight(glm::vec3(x, y, 0)) + scalez));
 		mat = glm::scale(mat, glm::vec3(scaleXY, scaleXY, scalez));
@@ -125,7 +125,24 @@ void EksamenLevel::init()
 	{
 		auto y = std::rand() % +(mHeightmap->mHeight - 50) + 50;
 		auto x = std::rand() % +(mHeightmap->mWidth - 50) + 50;
-		TrophyPoints.emplace_back(glm::vec3(x, y, mHeightmap->getHeight(glm::vec3(x, y, 0)) + 5));
+		
+
+		//so i dont spawn trophy in walls
+		for(auto& fence: fences)
+		{
+			auto fenceloc = fence->getLocation();
+			auto fencescale = fence->getScale();
+			while(x-5 < fenceloc.x - fencescale.x && 
+					x + 5 > fenceloc.x + fencescale.x &&
+					y - 5 < fenceloc.y - fencescale.y &&
+					y + 5 > fenceloc.y + fencescale.y)
+			{
+				auto y = std::rand() % +(mHeightmap->mHeight - 50) + 50;
+				auto x = std::rand() % +(mHeightmap->mWidth - 50) + 50;
+			}
+		}
+		glm::vec3 tmpPoint = glm::vec3(x, y, mHeightmap->getHeight(glm::vec3(x, y, 0)) + 5);
+		TrophyPoints.emplace_back(tmpPoint);
 	}
 
 	std::vector<std::pair<const char*, const char*>> trophymeshes;

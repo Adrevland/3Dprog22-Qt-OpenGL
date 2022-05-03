@@ -73,7 +73,7 @@ protected:
     glm::vec3 target{ 100.f };
     int score{ 0 };
 
-    float speed{ 0.1f };
+    float speed{ 0.2f };
     Heightmap* mHeightmap{ nullptr };
 
     CollisionPrimitive* rightSensor{ nullptr };

@@ -20,7 +20,7 @@ public:
 
 	void checkoverlap(Mesh* mesh);
 private:
-	float speed{ 2.f };
+	float speed{ 3.f };
 
 	std::chrono::steady_clock::time_point lasttime;
 
