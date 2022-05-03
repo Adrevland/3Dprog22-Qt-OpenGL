@@ -41,7 +41,7 @@ void BomberNpc::draw()
 
 void BomberNpc::tick()
 {
-	
+	spawner->simbomb();
 	veclocation += speed;
 	if (veclocation >= vecsize)
 	{
@@ -64,13 +64,13 @@ void BomberNpc::tick()
 		dropbomb();
 		lasttime = std::chrono::high_resolution_clock::now();
 	}
-
+	
 }
 
 void BomberNpc::dropbomb()
 {
 	spawner->spawn(0);
-	LOG_WARNING("Dropping bomb XD!");
+	//LOG_WARNING("Dropping bomb XD!");
 }
 
 void BomberNpc::checkoverlap(Mesh* mesh)

@@ -200,6 +200,9 @@
     <ClCompile Include="Mesh\Pawn\Npc.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="Mesh\Static\Fence.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mesh\Static\BezierCurve.h">
@@ -350,6 +353,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="Mesh\Pawn\Npc.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\Static\Fence.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

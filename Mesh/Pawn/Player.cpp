@@ -116,7 +116,7 @@ void Player::tick(float deltatime)
 
 	if(secondsStunned >= 2)
 	{
-		LOG_WARNING("PLAYER NO LONGER STUNNED");
+		//LOG_WARNING("PLAYER NO LONGER STUNNED");
 		stunned = false;
 		lasttime = std::chrono::high_resolution_clock::now();
 	}
@@ -134,6 +134,14 @@ void Player::tick(float deltatime)
 void Player::sendKeyboard(std::unordered_map<int, bool> &keyInput)
 {
 	mkeybInput = keyInput;
+}
+
+void Player::pushback(glm::vec3 pos)
+{
+	auto newloc = pos - mCamera->getFront();
+	setLocation(newloc);
+
+	move();// set z
 }
 
 bool Player::isOnMap()

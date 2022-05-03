@@ -47,7 +47,6 @@ void Spawner::draw()
 {
 	for(auto& mesh: mSpawnedMeshes)
 	{
-		dynamic_cast<Bomb*>(mesh)->tick();
 		mesh->draw();
 	}
 }
@@ -59,4 +58,12 @@ bool Spawner::checkoverlapp(Mesh* mesh)
 		smesh->checkOverlap(mesh);
 	}
 	return false;
+}
+
+void Spawner::simbomb()
+{
+	for (auto& mesh : mSpawnedMeshes)
+	{
+		dynamic_cast<Bomb*>(mesh)->tick();
+	}
 }

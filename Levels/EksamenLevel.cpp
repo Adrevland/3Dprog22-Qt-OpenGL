@@ -9,6 +9,7 @@
 #include "Mesh/Static/BezierCurve.h"
 #include "Mesh/Pawn/BomberNpc.h"
 #include "Mesh/Pawn/Npc.h"
+#include "Mesh/Static/Fence.h"
 
 EksamenLevel::EksamenLevel()
 	:Level(RENDERWINDOW)
@@ -128,12 +129,26 @@ void EksamenLevel::init()
 			auto tmp = new Trophy(mShaderPrograms["lightshadow"], tmpTLoc, trophymeshes.at(1).first, trophymeshes.at(1).second);
 			tmp->trophytype = TROPHYTYPE::Blue;
 			mMeshes.emplace_back(tmp);
-
+			mNpc->sendTrophyspoints(TrophyPoints[i]);
 		}
 
 	}
-	
-		
+	//create fences
+	for (int i = 0; i < 20; ++i)
+	{
+		float y = std::rand() % +mHeightmap->mHeight;
+		float x = std::rand() % +mHeightmap->mWidth;
+		float scaleX = std::rand() % +40;
+		float scaleY = std::rand() % +40;
+		float scalez = std::rand() % +40;
+
+		glm::mat4 mat = glm::translate(glm::mat4{ 1.f }, glm::vec3(x, y, mHeightmap->getHeight(glm::vec3(x, y, 0)) + scalez));
+		mat = glm::scale(mat, glm::vec3(scaleX, scaleY, scalez));
+		//todo change from kirby mesh
+		auto fence = new Fence(mShaderPrograms["lightshadow"], mat, "../3Dprog22/ObjFiles/Kirby.obj", "../3Dprog22/Textures/kirby.jpg");
+		fence->setViewMode(2);
+		fences.emplace_back(fence);
+	}
 
 
 	//skybox
@@ -156,6 +171,12 @@ void EksamenLevel::init()
 	mAllMeshes.emplace_back(mNpc);
 
 	//init and insert to oct tree
+	for(auto& obj: fences)
+	{
+		obj->init();
+		mAllMeshes.emplace_back(obj);
+	}
+
 	for (auto& obj : mMeshes)
 	{
 		mAllMeshes.emplace_back(obj);
@@ -192,7 +213,10 @@ void EksamenLevel::render()
 		mesh->draw();
 		mesh->sendTime(1);
 	}
-
+	for(auto& fenc: fences)
+	{
+		fenc->draw();
+	}
 	if (mHeightmap)mHeightmap->draw();
 	if (mSun) mSun->draw();
 	//draw camera
@@ -216,6 +240,10 @@ void EksamenLevel::render()
 	{
 		drawDebugshapes();
 		mOctTree->drawTree();
+		for (auto mesh : fences)
+		{
+			mesh->drawDebugLines(bDebugLines);
+		}
 	}
 
 	////draw light direction
@@ -232,7 +260,7 @@ void EksamenLevel::render()
 	glm::scale(ma, glm::vec3(10));
 	RenderWindow::Get()->drawDebugShape("cube", mPlayer->getModelMat());*/
 	//todo pause game
-	if(CameraType == CAMERAMODE::Follow)
+	if(CameraType == CAMERAMODE::Follow && !PlayerWon && !NpcWon)
 	{
 		auto lightdir = RENDERWINDOW->mLightDir;
 		//rotate sun
@@ -251,9 +279,14 @@ void EksamenLevel::render()
 		mPlayer->tick(1.f);
 		npcBomber->tick();
 		if (mNpc)mNpc->tick(1);
-
+		for (auto& obj : fences)
+		{
+			obj->checkOverlap(mPlayer);
+			obj->checkOverlap(mNpc);
+		}
 		mOctTree->checkCollision(mPlayer);
 		if (npcBomber)npcBomber->checkoverlap(mPlayer);
+		if (npcBomber)npcBomber->checkoverlap(mNpc);
 	}
 
 	//draw transparancy last
@@ -273,14 +306,14 @@ void EksamenLevel::render()
 	if (PlayerWon)
 	{
 		glm::vec3 billboardloc = mPlayer->getLocation();
-		billboardloc.z = 10.f + mPlayer->getLocation().z;
+		billboardloc.z = 15.f + mPlayer->getLocation().z;
 		mUiElements["win"]->setlocation(billboardloc);
 		mUiElements["win"]->draw();
 	}
 	else if (NpcWon)
 	{
 		glm::vec3 billboardloc = mPlayer->getLocation();
-		billboardloc.z = 10.f + mPlayer->getLocation().z;
+		billboardloc.z = 15.f + mPlayer->getLocation().z;
 		mUiElements["loose"]->setlocation(billboardloc);
 		mUiElements["loose"]->draw();
 	}

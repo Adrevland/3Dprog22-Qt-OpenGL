@@ -26,8 +26,10 @@ public:
 	}
 	void sendKeyboard(std::unordered_map<int,bool>&keyInput);
 	void setHeightmap(Heightmap* map) { mHeightmap = map; }
+	void pushback(glm::vec3 pos);
 private:
 	std::unordered_map<int, bool> mkeybInput;
+	bool forwardillegal{ false };
 
 	float forwardspeed{ 0 };
 	float rightspeed{ 0 };

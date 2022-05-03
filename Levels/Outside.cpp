@@ -2,10 +2,11 @@
 
 #include "core/renderwindow.h"
 #include "Mesh/static/BezierCurve.h"
+#include "Mesh/Static/Fence.h"
 #include "Mesh/static/Graph.h"
+#include "Mesh/static/Heightmap.h"
 #include "Mesh/static/House.h"
 #include "Mesh/static/Trophy.h"
-#include "Mesh/static/Heightmap.h"
 
 Outside::Outside(RenderWindow* rWindow)
 	:Level(rWindow)

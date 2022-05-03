@@ -43,7 +43,7 @@ void Bomb::explode()
 	//mModelMat = glm::scale(mModelMat, glm::vec3(2.f));
 	if (collision->radius >= 20.f)
 	{
-		LOG_HIGHLIGHT("Bomb deleted");
+		//LOG_HIGHLIGHT("Bomb deleted");
 		destroy();
 		//delete this;
 		owner->destroy(this);
@@ -59,10 +59,12 @@ bool Bomb::onBeginOverlap(CollisionPrimitive* primitive)
 		//stunning player either way
 		if(RENDERWINDOW->getLevel()->getPlayer()->getcollision() == primitive)
 		{
-			//todo fix
 			RENDERWINDOW->getLevel()->getPlayer()->stun();
 		}
-		
+		if (RENDERWINDOW->getLevel()->getNpc()->getcollision() == primitive)
+		{
+			RENDERWINDOW->getLevel()->getNpc()->stun();
+		}
 		destroy();
 		return true;
 	}

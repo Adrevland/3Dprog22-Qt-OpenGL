@@ -1,5 +1,6 @@
 #pragma once
 #include "Level.h"
+class Fence;
 class BomberNpc;
 
 class EksamenLevel :
@@ -21,7 +22,7 @@ public:
 
 protected:
     float daylightcyclespeed{ 0.1f };
-
+    std::vector<Fence*> fences;
     BomberNpc* npcBomber{ nullptr };
 
     const int WinScore{ 10 };

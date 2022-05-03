@@ -190,6 +190,7 @@
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Mesh\Static\Fence.cpp" />
     <ClCompile Include="Mesh\Static\Bomb.cpp" />
     <ClCompile Include="Mesh\Pawn\BomberNpc.cpp" />
     <ClCompile Include="Levels\EksamenLevel.cpp" />
@@ -243,6 +244,7 @@
     <ClCompile Include="Audio\wavfilereader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Mesh\Static\Fence.h" />
     <ClInclude Include="Mesh\Static\Bomb.h" />
     <ClInclude Include="Mesh\Pawn\BomberNpc.h" />
     <ClInclude Include="Levels\EksamenLevel.h" />

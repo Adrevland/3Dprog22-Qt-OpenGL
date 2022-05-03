@@ -18,9 +18,12 @@ public:
 
     void setHeightmap(Heightmap* map) { mHeightmap = map; }
     void sendTrophyspoints(std::vector<glm::vec3> trophyvecs) { TrophyPoints = trophyvecs; }
+    void sendTrophyspoints(glm::vec3 point) { TrophyPoints.emplace_back(point); }
 protected:
-
+    void setonmap();
     std::vector<glm::vec3> TrophyPoints;
+
+    glm::vec3 frontVector{0.f,1.f,0.f};
 
     float speed{ 0.5f };
     Heightmap* mHeightmap{ nullptr };

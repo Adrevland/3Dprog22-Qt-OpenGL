@@ -15,6 +15,9 @@ public:
 	void destroy(Mesh* mesh);
 	void draw();
 	bool checkoverlapp(Mesh* mesh);
+
+	void simbomb();
+
 private:
 	const char* mObj;
 	const char* mTexture;
