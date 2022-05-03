@@ -29,7 +29,7 @@ void Bomb::draw()
 void Bomb::tick()
 {
 	if(!bexploded)setLocation(getLocation() - (mCamera->getWorldup()*0.1f));
-	if(!bexploded)collision->Center = getLocation();
+	collision->Center = getLocation();
 	if(getLocation().z <= mHeightmap->getHeight(getLocation()))
 	{
 		bexploded = true;
@@ -60,7 +60,7 @@ bool Bomb::onBeginOverlap(CollisionPrimitive* primitive)
 		if(RENDERWINDOW->getLevel()->getPlayer()->getcollision() == primitive)
 		{
 			//todo fix
-			//RENDERWINDOW->getLevel()->getPlayer()->stun();
+			RENDERWINDOW->getLevel()->getPlayer()->stun();
 		}
 		
 		destroy();

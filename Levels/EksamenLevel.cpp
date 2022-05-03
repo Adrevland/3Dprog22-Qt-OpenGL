@@ -36,6 +36,17 @@ void EksamenLevel::init()
 	mHeightmap = new Heightmap(0.5f, "../3Dprog22/Assets/Heightmaps/Eksamenheightmap.png", "../3Dprog22/Assets/Heightmaps/Eksamentexture.png");
 	mHeightmap->init();
 
+	//ui elements
+	mUiElements["stun"] = new BillBoard("../3Dprog22/Assets/BillBoards/Stunned.png");
+	mUiElements["win"] = new BillBoard("../3Dprog22/Assets/BillBoards/Loose.png");
+	mUiElements["loose"] = new BillBoard("../3Dprog22/Assets/BillBoards/vinner.png");
+	for(auto& board: mUiElements)
+	{
+		
+		board.second->init();
+		board.second->scale(glm::vec3(30.f));
+	}
+
 	//bezier
 	std::vector<glm::vec3> bezierpoints;
 	for (int i = 0; i < 16; ++i)
@@ -219,8 +230,15 @@ void EksamenLevel::render()
 	{
 		billboard->draw();
 	}
-	
-	
+
+	//draw stun message
+	if(mPlayer->isStunned())
+	{
+		glm::vec3 billboardloc = mPlayer->getLocation();
+		billboardloc.z = 10.f + mPlayer->getLocation().z;
+		mUiElements["stun"]->setlocation(billboardloc);
+		mUiElements["stun"]->draw();
+	}
 
 }
 

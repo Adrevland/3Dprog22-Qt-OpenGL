@@ -64,6 +64,7 @@ public:
 
 	void stun() { if(!stunned)stunned = true; }
 	CollisionPrimitive* getcollision() { return mCollisionPrimitive; }
+	bool isStunned() { return stunned; }
 private:
 	const char* whitetexture{ "./Textures/white.jpg" };
 	//Model* mModel{nullptr};

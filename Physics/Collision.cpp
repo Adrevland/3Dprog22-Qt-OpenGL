@@ -107,11 +107,17 @@ bool Collision::isOverlapping(OBB* obb, AABB* aabb)
 
 bool Collision::isOverlapping(BSphere* sphere, BSphere* sphere1)
 {
+	if (sphere == sphere1) return false;
 	const auto maxDistance = sphere->radius + sphere1->radius;
 	const auto distance = abs(sphere->Center - sphere1->Center);
-
-	return distance.length() < maxDistance;
-
+	float len;
+	if (distance == glm::vec3(0.f))
+	{
+		len = 0.f;
+	}
+	else  len = glm::length(distance);
+	return  len < maxDistance;
+	
 }
 
 bool Collision::isOverlapping(BSphere* sphere, OBB* obb)

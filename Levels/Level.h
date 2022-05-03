@@ -62,7 +62,6 @@ public:
 	virtual void resetPlayer();
 
 	void editorCamera();
-
 	Shadows* getShadowmap() { return mShadowMap; }
 	Player* getPlayer() { return mPlayer; }
 	Heightmap* getHeightmap() { return mHeightmap; }
@@ -80,7 +79,7 @@ protected:
 	std::vector <Mesh*> mMeshes;
 	std::vector <Mesh*> mAllMeshes;
 	std::vector<BillBoard*> mBillboards;
-
+	std::unordered_map<std::string, BillBoard*> mUiElements;
 	OctTree* mOctTree;
 	Heightmap* mHeightmap{nullptr};
 	BezierCurve* mBezier{ nullptr };
@@ -102,6 +101,8 @@ protected:
 
 	SkyBox* mSkyBox{ nullptr };
 	Shadows* mShadowMap{ nullptr };
+
+
 
 private:
 };
