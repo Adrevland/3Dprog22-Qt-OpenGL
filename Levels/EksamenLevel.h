@@ -23,5 +23,7 @@ protected:
     float daylightcyclespeed{ 0.1f };
 
     BomberNpc* npcBomber{ nullptr };
+
+    const int WinScore{ 10 };
 };
 

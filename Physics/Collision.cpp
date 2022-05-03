@@ -1,5 +1,6 @@
 #include "Collision.h"
 #include "Core/renderwindow.h"
+#include "glm/glm.hpp"
 
 Collision::Collision()
 {
@@ -179,6 +180,7 @@ void CollisionPrimitive::draw()
 	switch (shape)
 	{
 	case Shape::aabb:
+		mat = glm::scale(mat, reinterpret_cast<AABB*>(this)->Extent);
 		RenderWindow::Get()->drawDebugShape("cube", mat);
 		break;
 	case Shape::obb:

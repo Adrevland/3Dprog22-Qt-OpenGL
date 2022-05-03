@@ -8,6 +8,7 @@
 #include "glm/glm.hpp"
 #include "Mesh/Static/BezierCurve.h"
 #include "Mesh/Pawn/BomberNpc.h"
+#include "Mesh/Pawn/Npc.h"
 
 EksamenLevel::EksamenLevel()
 	:Level(RENDERWINDOW)
@@ -38,8 +39,8 @@ void EksamenLevel::init()
 
 	//ui elements
 	mUiElements["stun"] = new BillBoard("../3Dprog22/Assets/BillBoards/Stunned.png");
-	mUiElements["win"] = new BillBoard("../3Dprog22/Assets/BillBoards/Loose.png");
-	mUiElements["loose"] = new BillBoard("../3Dprog22/Assets/BillBoards/vinner.png");
+	mUiElements["loose"] = new BillBoard("../3Dprog22/Assets/BillBoards/Loose.png");
+	mUiElements["win"] = new BillBoard("../3Dprog22/Assets/BillBoards/vinner.png");
 	for(auto& board: mUiElements)
 	{
 		
@@ -90,28 +91,49 @@ void EksamenLevel::init()
 	npcBomber = new BomberNpc("../3Dprog22/ObjFiles/Kirby.obj", "../3Dprog22/Textures/kirby.jpg", mBezier);
 	npcBomber->init();
 
+	//npc
+	mNpc = new Npc(mShaderPrograms["lightshadow"], glm::mat4{ 1.f }, "../3Dprog22/ObjFiles/Kirby.obj", "../3Dprog22/Textures/kirby.jpg");
+	mNpc->init();
+	mNpc->setLocation(glm::vec3(650.f, 650.f, 49.f));
+	mNpc->setHeightmap(mHeightmap);
 	//editor camera mesh
 	mCameraMesh = new Mesh(mShaderPrograms["lightshadow"], glm::scale(glm::mat4{ 1.f }, glm::vec3(0.5f)), "../3Dprog22/Assets/Meshes/Camera/camera.obj", "../3Dprog22/Assets/Meshes/Camera/camera.png");
 	mCameraMesh->init();
-	//make random trophys
+
+	//make random trophys locations
 	std::vector<glm::vec3> TrophyPoints;
-	for (int i = 0; i < 10; ++i)
+	for (int i = 0; i < 20; ++i)
 	{
 		auto y = std::rand() % +mHeightmap->mHeight;
 		auto x = std::rand() % +mHeightmap->mWidth;
-		TrophyPoints.emplace_back(glm::vec3(x, y, mHeightmap->getHeight(glm::vec3(x, y, 0)) + 1));
+		TrophyPoints.emplace_back(glm::vec3(x, y, mHeightmap->getHeight(glm::vec3(x, y, 0)) + 5));
 	}
 
 	std::vector<std::pair<const char*, const char*>> trophymeshes;
 	trophymeshes.emplace_back(std::pair<const char*, const char*>("../3Dprog22/ObjFiles/cherry.obj", "../3Dprog22/Textures/cherry.jpg"));
 	trophymeshes.emplace_back(std::pair<const char*, const char*>("../3Dprog22/ObjFiles/grape.obj", "../3Dprog22/Textures/grape.jpg"));
 
-	for (auto vec : TrophyPoints)
+	for (int i = 0; i < TrophyPoints.size(); ++i)
 	{
-		glm::mat4 tmpTLoc = glm::translate(glm::mat4(1.f), vec);
-		auto r = rand() % 2;
-		mMeshes.emplace_back(new Trophy(mShaderPrograms["light"], tmpTLoc, trophymeshes.at(r).first, trophymeshes.at(r).second));
+		glm::mat4 tmpTLoc = glm::translate(glm::mat4(1.f), TrophyPoints[i]);
+		tmpTLoc = glm::scale(tmpTLoc, glm::vec3(5.f));
+		if(i >= TrophyPoints.size()/2.f)
+		{
+			auto tmp = new Trophy(mShaderPrograms["lightshadow"], tmpTLoc, trophymeshes.at(0).first, trophymeshes.at(0).second);
+			tmp->trophytype = TROPHYTYPE::Red;
+			mMeshes.emplace_back(tmp);
+		}
+		else
+		{
+			auto tmp = new Trophy(mShaderPrograms["lightshadow"], tmpTLoc, trophymeshes.at(1).first, trophymeshes.at(1).second);
+			tmp->trophytype = TROPHYTYPE::Blue;
+			mMeshes.emplace_back(tmp);
+
+		}
+
 	}
+	
+		
 
 
 	//skybox
@@ -131,6 +153,8 @@ void EksamenLevel::init()
 	mAllMeshes.emplace_back(mHeightmap);
 	mAllMeshes.emplace_back(mPlayer);
 	mAllMeshes.emplace_back(npcBomber);
+	mAllMeshes.emplace_back(mNpc);
+
 	//init and insert to oct tree
 	for (auto& obj : mMeshes)
 	{
@@ -149,6 +173,12 @@ void EksamenLevel::init()
 void EksamenLevel::render()
 {
 	Level::render();
+	//check win condition
+	if (PlayerScore >= WinScore)
+		PlayerWon = true;
+	else if (NpcScore >= WinScore)
+		NpcWon = true;
+
 
 	if (mShadowMap)mShadowMap->draw(mAllMeshes);
 
@@ -156,7 +186,7 @@ void EksamenLevel::render()
 
 	if (mBezier)mBezier->draw();
 	if (npcBomber)npcBomber->draw();
-
+	if (mNpc)mNpc->draw();
 	for (auto& mesh : mMeshes)
 	{
 		mesh->draw();
@@ -220,6 +250,7 @@ void EksamenLevel::render()
 		}
 		mPlayer->tick(1.f);
 		npcBomber->tick();
+		if (mNpc)mNpc->tick(1);
 
 		mOctTree->checkCollision(mPlayer);
 		if (npcBomber)npcBomber->checkoverlap(mPlayer);
@@ -238,6 +269,20 @@ void EksamenLevel::render()
 		billboardloc.z = 10.f + mPlayer->getLocation().z;
 		mUiElements["stun"]->setlocation(billboardloc);
 		mUiElements["stun"]->draw();
+	}
+	if (PlayerWon)
+	{
+		glm::vec3 billboardloc = mPlayer->getLocation();
+		billboardloc.z = 10.f + mPlayer->getLocation().z;
+		mUiElements["win"]->setlocation(billboardloc);
+		mUiElements["win"]->draw();
+	}
+	else if (NpcWon)
+	{
+		glm::vec3 billboardloc = mPlayer->getLocation();
+		billboardloc.z = 10.f + mPlayer->getLocation().z;
+		mUiElements["loose"]->setlocation(billboardloc);
+		mUiElements["loose"]->draw();
 	}
 
 }

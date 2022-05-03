@@ -2,6 +2,13 @@
 #include "Mesh/Mesh.h"
 class BoundingBox;
 
+enum TROPHYTYPE
+{
+	NONE = 0,
+	Red = 1,
+	Blue = 2,
+};
+
 class Trophy :
     public Mesh
 {
@@ -14,6 +21,8 @@ public:
 	bool onBeginOverlap(CollisionPrimitive* primitive) override;
 	void init() override;
 	void draw() override;
+	void tick();
+	TROPHYTYPE trophytype{TROPHYTYPE::NONE};
 private:
 	//BoundingBox* mBoxComponent;
 };

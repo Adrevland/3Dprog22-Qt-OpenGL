@@ -4,7 +4,7 @@
 #include "core/OctTree.h"
 #include <unordered_map>
 #include "Mesh/Pawn/Player.h"
-
+#include "Mesh/Pawn/Npc.h"
 
 class BezierCurve;
 class BillBoard;
@@ -64,7 +64,17 @@ public:
 	void editorCamera();
 	Shadows* getShadowmap() { return mShadowMap; }
 	Player* getPlayer() { return mPlayer; }
+	Npc* getNpc() { return mNpc; }
 	Heightmap* getHeightmap() { return mHeightmap; }
+
+
+
+	//gidder ikke getters og setters
+	bool PlayerWon{ false };
+	bool NpcWon{ false };
+	int PlayerScore{ 0 };
+	int NpcScore{ 0 };
+
 protected:
 	RenderWindow* mRenderWindow{nullptr};
 	
@@ -72,6 +82,7 @@ protected:
 	bool bDebugLines{ true };
 
 	//meshes
+	Npc* mNpc{ nullptr };
 	Player* mPlayer; //want player accesable outside of vector
 	Mesh* mSun{nullptr}; // because it is outside oct
 	Mesh* mCameraMesh{ nullptr };
@@ -103,7 +114,7 @@ protected:
 	Shadows* mShadowMap{ nullptr };
 
 
-
+	
 private:
 };
 

@@ -8,6 +8,7 @@
 #include "core/logger.h"
 #include "core/renderwindow.h"
 
+
 Level::Level(RenderWindow* rWindow)
 	:mRenderWindow(rWindow)
 {

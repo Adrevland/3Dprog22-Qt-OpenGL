@@ -197,6 +197,7 @@
     <ClCompile Include="Levels\HeightmapLevel.cpp" />
     <ClCompile Include="Mesh\Pawn\Pawn.cpp" />
     <ClCompile Include="Mesh\Static\DebugShapes.cpp" />
+    <ClCompile Include="Mesh\Pawn\Npc.cpp" />
     <ClCompile Include="Physics\Collision.cpp" />
     <ClCompile Include="Mesh\Static\BezierCurve.cpp" />
     <ClCompile Include="Physics\BoundingBox.cpp" />
@@ -249,6 +250,7 @@
     <ClInclude Include="Levels\HeightmapLevel.h" />
     <ClInclude Include="Mesh\Pawn\Pawn.h" />
     <ClInclude Include="Mesh\Static\DebugShapes.h" />
+    <ClInclude Include="Mesh\Pawn\Npc.h" />
     <ClInclude Include="Physics\Collision.h" />
     <ClInclude Include="Mesh\Static\BezierCurve.h" />
     <ClInclude Include="Physics\BoundingBox.h" />
